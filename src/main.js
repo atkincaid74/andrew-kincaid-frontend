@@ -16,5 +16,7 @@ new Vue({
   render: h => h(App)
 }).$mount('#app');
 
-axios.defaults.baseURL = 'https://andrew-kincaid-backend.herokuapp.com/';
-axios.defaults.headers['Authorization'] = `JWT ${store.state.token}`;
+axios.defaults.baseURL = process.env.NODE_ENV !== 'production' ?
+    'http://localhost:8000/' :
+    'https://andrew-kincaid-backend.herokuapp.com/';
+axios.defaults.headers['Authorization'] = `JWT ${store.state.token !== null ? store.state.token : ''}`;
