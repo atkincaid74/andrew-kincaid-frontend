@@ -20,14 +20,14 @@
                         :error-messages="userErrors"
                     ></v-text-field>
                     <v-text-field
-                            v-model="enteredPass"
-                            label="Password"
-                            type="password"
-                            @submit=""
-                            @keydown.enter.native=""
-                            @change="$v.enteredPass.$touch()"
-                            @blur="$v.enteredPass.$touch()"
-                            :error-messages="passErrors"
+                        v-model="enteredPass"
+                        label="Password"
+                        type="password"
+                        @submit=""
+                        @keydown.enter.native="submitLoginInfo"
+                        @change="$v.enteredPass.$touch()"
+                        @blur="$v.enteredPass.$touch()"
+                        :error-messages="passErrors"
                     ></v-text-field>
                 </v-form>
             </v-card-text>
@@ -37,7 +37,7 @@
                 >Create Account</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
-                        @click="submitLoginInfo"
+                    @click="submitLoginInfo"
                 >Login
                 </v-btn>
             </v-card-actions>
@@ -88,15 +88,32 @@
             createUserDialog: false,
         }),
         methods: {
-            submitLoginInfo() {
-                this.$store.dispatch('getToken', { username: this.enteredUser, password: this.enteredPass })
-                    .then(this.getUserInfo())
-                    .catch(e => console.log(e))
+            async submitLoginInfo() {
+                let response;
+                try {
+                    response = await this.$store.dispatch('getToken', {
+                        username: this.enteredUser.toLowerCase(),
+                        password: this.enteredPass
+                    });
+                    this.getUserInfo();
+                } catch (e) {
+                    this.$store.commit('setSnackbarMessage', e.data.non_field_errors[0]);
+                    this.$store.commit('setSnackbarColor', 'error');
+                    this.$store.commit('toggleDisplaySnackbar');
+                }
+
             },
-            getUserInfo() {
-                this.$store.dispatch('getUserInfo', { username: this.enteredUser })
-                    .then(this.$router.push({name: 'Home'}))
-                    .catch(e => console.log(e))
+            async getUserInfo() {
+                try {
+                    const response = await this.$store.dispatch('getUserInfo', {
+                        username: this.enteredUser.toLowerCase()
+                    })
+                } catch (e) {
+                    this.$store.commit('setSnackbarMessage', 'Error getting user info');
+                    this.$store.commit('setSnackbarColor', 'error');
+                    this.$store.commit('toggleDisplaySnackbar');
+                }
+                await this.$router.push({ name: 'Home' })
             },
             toggleCreateUserDialog() {
                 this.createUserDialog = !this.createUserDialog;

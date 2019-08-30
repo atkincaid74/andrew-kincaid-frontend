@@ -55,7 +55,7 @@ export const actions = {
         try {
             commit('setUser', payload.username);
             commit('setToken', response.data.token);
-            return response
+            return Promise.resolve(response)
         } catch (e) {
             // todo fill out
             return Promise.reject(response)

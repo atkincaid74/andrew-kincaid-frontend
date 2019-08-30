@@ -12,15 +12,16 @@
         <v-spacer></v-spacer>
 
         <v-btn
-            v-if="this.username === null"
+            v-if="username === null"
             icon
+            text
             @click="goToUserLoginHomepage"
         >
             <UserIcon></UserIcon>
         </v-btn>
 
         <v-menu
-            v-if="this.username !== null"
+            v-if="username !== null"
             v-model="menu"
             :close-on-click="true"
             :close-on-content-click="true"

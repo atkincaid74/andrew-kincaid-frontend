@@ -167,7 +167,7 @@
                 const payload = {
                     firstName: this.firstName,
                     lastName: this.lastName,
-                    username: this.username,
+                    username: this.username.toLowerCase(),
                     password: this.password,
                     email: this.email,
                 };
