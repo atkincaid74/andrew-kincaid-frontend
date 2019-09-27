@@ -20,8 +20,8 @@ export const state = {
 };
 
 export const mutations = {
-    toggleNavBar (state) {
-        state.navBarVisible = !state.navBarVisible;
+    toggleNavBar (state, payload) {
+        state.navBarVisible = payload;
     },
     setToken (state, payload) {
         state.token = payload;
@@ -101,7 +101,12 @@ export const actions = {
         commit('setUserFirstName', null);
         commit('setUserLastName', null);
         commit('setUserPaid', null);
-    }
+    },
+    async getResults({commit, state}, payload) {
+        const response = await DjangoAPI.getResults(payload);
+
+        return response.data
+    },
 };
 
 export default new Vuex.Store({

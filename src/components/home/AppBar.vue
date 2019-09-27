@@ -62,11 +62,12 @@
         computed: {
             ...mapState({
                 username: state => state.username,
+                navBarVisible: state => state.navBarVisible,
             })
         },
         methods: {
             toggleNavDrawer () {
-                this.$store.commit('toggleNavBar');
+                this.$store.commit('toggleNavBar', !this.navBarVisible);
             },
             goToUserLoginHomepage () {
                 if (this.username == null) {

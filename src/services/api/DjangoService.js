@@ -18,5 +18,11 @@ export default {
             .post('/api/get_user_info/', payload)
             .then(response => (response))
             .catch(err => {console.log(err); throw err.response})
-    }
+    },
+    getResults(payload) {
+        return axios
+            .post('/api/get_picks/', payload)
+            .then(response => (response))
+            .catch(err => {console.log(err); throw err.response})
+    },
 }

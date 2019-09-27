@@ -26,6 +26,17 @@
 
             <v-divider></v-divider>
 
+            <v-list-item
+                v-if="username !== null"
+            >
+                <v-list-item-content>
+                    <v-list-item-title
+                        @click="goToSuperContest"
+                    >The Real Super-Contest</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+
+
             <!--      <v-list-item-->
             <!--          v-for="item in items"-->
             <!--          :key="item.title"-->
@@ -69,8 +80,12 @@
                 this.$router.push({name: 'UserHome'});
                 this.toggleNavBar()
             },
+            goToSuperContest () {
+                this.$router.push({name: 'ResultsTable'});
+                this.toggleNavBar()
+            },
             toggleNavBar () {
-                this.$store.commit('toggleNavBar')
+                this.$store.commit('toggleNavBar', !this.navBarVisible)
             }
         },
     }

@@ -113,6 +113,7 @@
                     this.$store.commit('setSnackbarColor', 'error');
                     this.$store.commit('toggleDisplaySnackbar');
                 }
+                this.$store.commit('toggleNavBar', true);
                 await this.$router.push({ name: 'Home' })
             },
             toggleCreateUserDialog() {
