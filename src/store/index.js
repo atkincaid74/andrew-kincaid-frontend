@@ -107,6 +107,9 @@ export const actions = {
 
         return response.data
     },
+    async updateGames() {
+        await DjangoAPI.updateGames();
+    }
 };
 
 export default new Vuex.Store({

@@ -1,6 +1,12 @@
 <template>
     <v-card>
         <v-card-title>
+            <v-btn
+                color="warning"
+                @click="updateGames"
+                :loading="loading"
+            >Update Games</v-btn>
+            <v-spacer></v-spacer>
             <v-text-field
                 v-model="search"
                 :append-icon="searchIcon"
@@ -13,6 +19,7 @@
             :headers="headers"
             :items="items"
             :search="search"
+            :loading="loading"
             dense
         >
             <template v-slot:item.andrewsPick="{ item }">
@@ -34,7 +41,8 @@
             headers: [],
             items: [],
             search: '',
-            searchIcon: mdiMagnify
+            searchIcon: mdiMagnify,
+            loading: true,
         }),
         beforeMount() {
             this.getResults();
@@ -59,10 +67,17 @@
                         return newObj
                     }
                 );
+                this.loading = false;
             },
             getColor(pick, winner) {
                 return pick === winner ? 'green' : 'red'
-            }
+            },
+            async updateGames() {
+                this.loading = true;
+                await this.$store.dispatch('updateGames');
+                await this.getResults();
+                this.loading = false;
+            },
         },
     }
 </script>
