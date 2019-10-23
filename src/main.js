@@ -9,6 +9,17 @@ import VueSession from 'vue-session';
 Vue.config.productionTip = false;
 Vue.use(VueSession);
 
+Vue.mixin({
+  methods: {
+    camelize(str) {
+      return str.replace(/[^a-z ]/ig, '').replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
+        if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+        return index === 0 ? match.toLowerCase() : match.toUpperCase();
+      })
+    },
+  }
+});
+
 new Vue({
   vuetify,
   store,
