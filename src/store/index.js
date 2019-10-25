@@ -73,9 +73,9 @@ export const actions = {
         const data = response.data;
 
         if (data === 'Success') {
-            commit('setUser', payload.username);
-            commit('setUserFirstName', payload.firstName);
-            commit('setUserLastName', payload.lastName);
+            commit('setSnackbarMessage', 'User successfully created! Please sign in.');
+            commit('setSnackbarColor', 'success');
+            commit('toggleDisplaySnackbar');
         } else if (data.startsWith('Email already')) {
             commit('setSnackbarMessage', 'Email already associated with an account');
             commit('setSnackbarColor', 'error');
@@ -108,7 +108,7 @@ export const actions = {
         commit('setUserFirstName', null);
         commit('setUserLastName', null);
         commit('setUserPaid', null);
-        axios.defaults.headers['Authorization'] = `JWT`;
+        delete axios.defaults.headers['Authorization'];
     },
     async getResults({commit, state}, payload) {
         const response = await DjangoAPI.getResults(payload);
