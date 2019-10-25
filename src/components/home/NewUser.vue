@@ -1,9 +1,9 @@
 <template>
     <v-dialog
-            v-model="display"
-            max-width="600"
-            class="mx-auto"
-            persistent
+        v-model="display"
+        max-width="600"
+        class="mx-auto"
+        persistent
     >
         <v-card>
             <v-card-title>Create New User</v-card-title>
@@ -12,65 +12,65 @@
                     <v-layout row>
                         <v-flex lg6>
                             <v-text-field
-                                    required
-                                    v-model="firstName"
-                                    label="First Name"
-                                    @change="$v.firstName.$touch()"
-                                    @blur="$v.firstName.$touch()"
-                                    :error-messages="firstNameErrors"
+                                required
+                                v-model="firstName"
+                                label="First Name"
+                                @change="$v.firstName.$touch()"
+                                @blur="$v.firstName.$touch()"
+                                :error-messages="firstNameErrors"
                             ></v-text-field>
                         </v-flex>
                         <v-flex lg6>
                             <v-text-field
-                                    required
-                                    v-model="lastName"
-                                    label="Last Name"
-                                    @change="$v.lastName.$touch()"
-                                    @blur="$v.lastName.$touch()"
-                                    :error-messages="lastNameErrors"
+                                required
+                                v-model="lastName"
+                                label="Last Name"
+                                @change="$v.lastName.$touch()"
+                                @blur="$v.lastName.$touch()"
+                                :error-messages="lastNameErrors"
                             ></v-text-field>
                         </v-flex>
                         <v-flex lg6>
                             <v-text-field
-                                    required
-                                    v-model="email"
-                                    label="Email"
-                                    @change="$v.email.$touch()"
-                                    @blur="$v.email.$touch()"
-                                    :error-messages="emailErrors"
+                                required
+                                v-model="email"
+                                label="Email"
+                                @change="$v.email.$touch()"
+                                @blur="$v.email.$touch()"
+                                :error-messages="emailErrors"
                             ></v-text-field>
                         </v-flex>
                         <v-flex lg6>
                             <v-text-field
-                                    required
-                                    v-model="username"
-                                    label="Username"
-                                    @change="$v.username.$touch()"
-                                    @blur="$v.username.$touch()"
-                                    :error-messages="usernameErrors"
+                                required
+                                v-model="username"
+                                label="Username"
+                                @change="$v.username.$touch()"
+                                @blur="$v.username.$touch()"
+                                :error-messages="usernameErrors"
                             ></v-text-field>
                         </v-flex>
                         <v-flex lg6>
                             <v-text-field
-                                    required
-                                    v-model="password"
-                                    label="Password"
-                                    type="password"
-                                    @change="$v.password.$touch()"
-                                    @blur="$v.password.$touch()"
-                                    :error-messages="passwordErrors"
+                                required
+                                v-model="password"
+                                label="Password"
+                                type="password"
+                                @change="$v.password.$touch()"
+                                @blur="$v.password.$touch()"
+                                :error-messages="passwordErrors"
                             ></v-text-field>
                         </v-flex>
                         <v-flex lg6>
                             <v-text-field
-                                    required
-                                    v-model="confirmPassword"
-                                    label="Confirm Password"
-                                    type="password"
-                                    @change="$v.confirmPassword.$touch()"
-                                    @blur="$v.confirmPassword.$touch()"
-                                    :error-messages="confirmPasswordErrors"
-                                    @keyup.enter="createNewUser"
+                                required
+                                v-model="confirmPassword"
+                                label="Confirm Password"
+                                type="password"
+                                @change="$v.confirmPassword.$touch()"
+                                @blur="$v.confirmPassword.$touch()"
+                                :error-messages="confirmPasswordErrors"
+                                @keyup.enter="createNewUser"
                             ></v-text-field>
                         </v-flex>
                     </v-layout>
@@ -79,14 +79,14 @@
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                        @click="closeDialog"
-                        color="red"
+                    @click="closeDialog"
+                    color="red"
                 >Close</v-btn>
                 <v-btn
-                        color="primary"
-                        @click="createNewUser"
-                        :disabled="formInvalid || loading"
-                        :loading="loading"
+                    color="primary"
+                    @click="createNewUser"
+                    :disabled="formInvalid || loading"
+                    :loading="loading"
                 >Submit</v-btn>
             </v-card-actions>
         </v-card>
@@ -166,18 +166,23 @@
             }
         },
         methods:{
-            createNewUser() {
+            async createNewUser() {
                 this.loading = true;
-                const payload = {
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                    username: this.username.toLowerCase(),
-                    password: this.password,
-                    email: this.email,
-                };
-                this.$store.dispatch('createNewUser', payload)
-                    .then(this.closeDialog);
-                this.loading = false;
+                try {
+                    const payload = {
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        username: this.username.toLowerCase(),
+                        password: this.password,
+                        email: this.email,
+                    };
+                    await this.$store.dispatch('createNewUser', payload);
+                    this.loading = false;
+                    this.closeDialog()
+                } catch(err) {
+                    console.log(err);
+                    this.loading = false;
+                }
             },
             closeDialog() {
                 this.$emit('close-new-user', 'toggleCreateUserDialog')
