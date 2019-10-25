@@ -70,6 +70,7 @@
                                     @change="$v.confirmPassword.$touch()"
                                     @blur="$v.confirmPassword.$touch()"
                                     :error-messages="confirmPasswordErrors"
+                                    @keyup.enter="createNewUser"
                             ></v-text-field>
                         </v-flex>
                     </v-layout>
@@ -84,7 +85,8 @@
                 <v-btn
                         color="primary"
                         @click="createNewUser"
-                        :disabled="formInvalid"
+                        :disabled="formInvalid || loading"
+                        :loading="loading"
                 >Submit</v-btn>
             </v-card-actions>
         </v-card>
@@ -116,6 +118,7 @@
             username: '',
             password: '',
             confirmPassword: '',
+            loading: false,
         }),
         computed: {
             firstNameErrors() {
@@ -164,6 +167,7 @@
         },
         methods:{
             createNewUser() {
+                this.loading = true;
                 const payload = {
                     firstName: this.firstName,
                     lastName: this.lastName,
@@ -172,7 +176,8 @@
                     email: this.email,
                 };
                 this.$store.dispatch('createNewUser', payload)
-                    .then(this.closeDialog)
+                    .then(this.closeDialog);
+                this.loading = false;
             },
             closeDialog() {
                 this.$emit('close-new-user', 'toggleCreateUserDialog')
