@@ -95,7 +95,7 @@
                         username: this.enteredUser.toLowerCase(),
                         password: this.enteredPass
                     });
-                    this.getUserInfo();
+                    await this.getUserInfo();
                 } catch (e) {
                     this.$store.commit('setSnackbarMessage', e.data.non_field_errors[0]);
                     this.$store.commit('setSnackbarColor', 'error');

@@ -2,7 +2,7 @@
     <v-navigation-drawer
         app
         clipped
-        :value="navBarVisible"
+        v-model="navBarVisible"
     >
         <v-list
             dense
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapState, mapGetters } from 'vuex';
     import UserIcon from "./UserIcon";
 
     export default {
@@ -66,13 +66,20 @@
         },
         computed: {
             ...mapState({
-                navBarVisible: state => state.navBarVisible,
+                // navBarVisible: state => state.navBarVisible,
                 username: state => state.username,
                 userFirstName: state => state.userFirstName,
                 userLastName: state => state.userLastName,
             }),
+            ...mapGetters({
+                getNavBar: 'getNavBar',
+            }),
             fullName () {
                 return this.userFirstName + ' ' + this.userLastName
+            },
+            navBarVisible: {
+                get() { return this.getNavBar },
+                set(value) { this.$store.commit('toggleNavBar', value) }
             },
         },
         methods: {

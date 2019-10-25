@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import Es6Promise from 'es6-promise';
 import DjangoAPI from '../services/api/DjangoService';
 import createPersistedState from "vuex-persistedstate";
+import axios from 'axios';
 
 Es6Promise.polyfill();
 Vue.use(Vuex);
@@ -17,6 +18,10 @@ export const state = {
     displaySnackbar: false,
     snackbarMessage: '',
     snackbarColor: 'error',
+};
+
+export const getters = {
+    getNavBar: state => state.navBarVisible,
 };
 
 export const mutations = {
@@ -53,8 +58,10 @@ export const actions = {
     async getToken({ commit, state }, payload) {
         const response = await DjangoAPI.getToken(payload);
         try {
+            console.log('here', response.data);
             commit('setUser', payload.username);
             commit('setToken', response.data.token);
+            axios.defaults.headers['Authorization'] = `JWT ${state.token}`;
             return Promise.resolve(response)
         } catch (e) {
             // todo fill out
@@ -101,6 +108,7 @@ export const actions = {
         commit('setUserFirstName', null);
         commit('setUserLastName', null);
         commit('setUserPaid', null);
+        axios.defaults.headers['Authorization'] = `JWT`;
     },
     async getResults({commit, state}, payload) {
         const response = await DjangoAPI.getResults(payload);
@@ -114,6 +122,7 @@ export const actions = {
 
 export default new Vuex.Store({
     state,
+    getters,
     mutations,
     actions,
     plugins: [
