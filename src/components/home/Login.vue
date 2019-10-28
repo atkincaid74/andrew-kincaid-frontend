@@ -38,6 +38,7 @@
                 <v-spacer></v-spacer>
                 <v-btn
                     @click="submitLoginInfo"
+                    :loading="loading"
                 >Login
                 </v-btn>
             </v-card-actions>
@@ -86,9 +87,11 @@
             enteredUser: null,
             enteredPass: null,
             createUserDialog: false,
+            loading: false,
         }),
         methods: {
             async submitLoginInfo() {
+                this.loading = true;
                 let response;
                 try {
                     response = await this.$store.dispatch('getToken', {
@@ -96,10 +99,12 @@
                         password: this.enteredPass
                     });
                     await this.getUserInfo();
+                    this.loading = false;
                 } catch (e) {
                     this.$store.commit('setSnackbarMessage', e.data.non_field_errors[0]);
                     this.$store.commit('setSnackbarColor', 'error');
                     this.$store.commit('toggleDisplaySnackbar');
+                    this.loading = false;
                 }
 
             },

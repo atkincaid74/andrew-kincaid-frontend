@@ -28,7 +28,6 @@ export default {
     updateGames() {
         axios
             .post('/api/update_results/')
-            .then(response => console.log(response))
             .catch(err => {console.log(err); throw err.response})
     },
 }

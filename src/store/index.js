@@ -58,7 +58,6 @@ export const actions = {
     async getToken({ commit, state }, payload) {
         const response = await DjangoAPI.getToken(payload);
         try {
-            console.log('here', response.data);
             commit('setUser', payload.username);
             commit('setToken', response.data.token);
             axios.defaults.headers['Authorization'] = `JWT ${state.token}`;
