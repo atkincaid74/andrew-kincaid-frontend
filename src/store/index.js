@@ -23,6 +23,7 @@ export const state = {
 
 export const getters = {
     getNavBar: state => state.navBarVisible,
+    getToken: state => state.token,
 };
 
 export const mutations = {
@@ -61,7 +62,7 @@ export const actions = {
         try {
             commit('setUser', payload.username);
             commit('setToken', response.data.token);
-            axios.defaults.headers['Authorization'] = `JWT ${state.token}`;
+            // axios.defaults.headers['Authorization'] = `JWT ${state.token}`;
             return Promise.resolve(response)
         } catch (e) {
             // todo fill out
@@ -108,7 +109,7 @@ export const actions = {
         commit('setUserFirstName', null);
         commit('setUserLastName', null);
         commit('setUserPaid', null);
-        delete axios.defaults.headers['Authorization'];
+        // delete axios.defaults.headers['Authorization'];
     },
     getResults({commit, state}, payload) {
         try {
@@ -132,7 +133,7 @@ export const actions = {
     }
 };
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state,
     getters,
     mutations,
@@ -150,4 +151,6 @@ export default new Vuex.Store({
             ]
         })
     ]
-})
+});
+
+export default store;
