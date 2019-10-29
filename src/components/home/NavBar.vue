@@ -1,7 +1,6 @@
 <template>
     <v-navigation-drawer
         app
-        clipped
         v-model="navBarVisible"
     >
         <v-list
@@ -10,6 +9,7 @@
             class="py-0"
         >
             <v-list-item
+                class="mt-2"
                 two-line
                 v-if="username !== null"
                 @click="goToUserHomepage"
@@ -24,16 +24,31 @@
                 </v-list-item-content>
             </v-list-item>
 
+            <v-list-item
+                v-if="username === null"
+                @click="goToLogin"
+            >
+                <v-list-item-icon>
+                    <UserIcon></UserIcon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                    Sign In
+                </v-list-item-title>
+            </v-list-item>
+
             <v-divider></v-divider>
 
             <v-list-item
                 v-if="username !== null"
             >
-                <v-list-item-content>
-                    <v-list-item-title
-                        @click="goToSuperContest"
-                    >The Real Super-Contest</v-list-item-title>
-                </v-list-item-content>
+                <v-list-item-icon>
+                    <v-icon>{{ SCIcon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title
+                    @click="goToSuperContest"
+                >
+                    The Real Super-Contest
+                </v-list-item-title>
             </v-list-item>
 
 
@@ -58,9 +73,13 @@
 <script>
     import { mapState, mapGetters } from 'vuex';
     import UserIcon from "./UserIcon";
+    import { mdiCashMultiple } from '@mdi/js';
 
     export default {
         name: "NavBar",
+        data: () => ({
+            SCIcon: mdiCashMultiple,
+        }),
         components: {
             UserIcon,
         },
@@ -83,15 +102,19 @@
             },
         },
         methods: {
-            goToUserHomepage () {
+            goToLogin() {
+                this.$router.push({name: 'Login'});
+                this.toggleNavBar()
+            },
+            goToUserHomepage() {
                 this.$router.push({name: 'UserHome'});
                 this.toggleNavBar()
             },
-            goToSuperContest () {
+            goToSuperContest() {
                 this.$router.push({name: 'SuperContestHome'});
                 this.toggleNavBar()
             },
-            toggleNavBar () {
+            toggleNavBar() {
                 this.$store.commit('toggleNavBar', !this.navBarVisible)
             }
         },

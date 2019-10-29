@@ -1,5 +1,8 @@
 <template>
-    <v-app-bar app>
+    <v-app-bar
+        app
+        color="primary"
+    >
         <v-app-bar-nav-icon
             @click="toggleNavDrawer"
         ></v-app-bar-nav-icon>
@@ -25,6 +28,7 @@
             v-model="menu"
             :close-on-click="true"
             :close-on-content-click="true"
+            open-on-hover
         >
             <template v-slot:activator="{ on }">
                 <v-btn
@@ -57,7 +61,6 @@
         },
         data: () => ({
             menu: false,
-
         }),
         computed: {
             ...mapState({

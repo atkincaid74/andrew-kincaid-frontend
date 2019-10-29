@@ -45,7 +45,7 @@
                         user: this.username,
                         first: this.userFirstName,
                         last: this.userLastName,
-                        paid: this.paid,
+                        paid: this.userPaid ? 'Yes' : 'No',
                     },
                 ];
             }

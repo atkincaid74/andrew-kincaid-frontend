@@ -37,4 +37,11 @@ const router = new Router({
     routes
 });
 
+router.beforeEach((to, from, next) => {
+    if (to === from) {
+        next(false)
+    } else next()
+});
+
+
 export { router, routes }

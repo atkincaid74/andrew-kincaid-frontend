@@ -1,7 +1,10 @@
 <template>
-    <v-card>
+    <v-card
+        max-width="95%"
+        class="mx-auto my-3"
+        raised
+    >
         <v-card-title>
-
             <v-container>
                 <v-row>Game by Game Results</v-row>
                 <v-row>

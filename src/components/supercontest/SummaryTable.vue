@@ -1,5 +1,9 @@
 <template>
-    <v-card>
+    <v-card
+        max-width="600"
+        class="mx-auto my-2"
+        raised
+    >
         <v-card-title>
             Summary
         </v-card-title>
