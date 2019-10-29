@@ -109,13 +109,25 @@ export const actions = {
         commit('setUserPaid', null);
         delete axios.defaults.headers['Authorization'];
     },
-    async getResults({commit, state}, payload) {
-        const response = await DjangoAPI.getResults(payload);
-
-        return response.data
+    getResults({commit, state}, payload) {
+        try {
+            return DjangoAPI.getResults(payload);
+        } catch (e) {
+            console.log(e);
+            commit('setSnackbarMessage', 'Error getting results. Please try again or contact Andrew.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
     },
-    async updateGames() {
-        await DjangoAPI.updateGames();
+    updateGames({commit}) {
+        try {
+            DjangoAPI.updateGames();
+        } catch (e) {
+            console.log(e);
+            commit('setSnackbarMessage', 'Error updating results. Please try again or contact Andrew.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
     }
 };
 
