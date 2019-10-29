@@ -18,6 +18,7 @@ export const state = {
     displaySnackbar: false,
     snackbarMessage: '',
     snackbarColor: 'error',
+    authHeader: null,
 };
 
 export const getters = {

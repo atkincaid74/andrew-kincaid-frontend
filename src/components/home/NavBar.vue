@@ -88,7 +88,7 @@
                 this.toggleNavBar()
             },
             goToSuperContest () {
-                this.$router.push({name: 'ResultsTable'});
+                this.$router.push({name: 'SuperContestHome'});
                 this.toggleNavBar()
             },
             toggleNavBar () {

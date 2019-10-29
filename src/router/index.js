@@ -5,7 +5,7 @@ import store from '../store';
 import HelloWorld from "../components/HelloWorld";
 import Login from "../components/home/Login";
 import UserHomepage from "../components/home/UserHomepage";
-import ResultsTable from "../components/supercontest/ResultsTable";
+import SuperContestHome from "../components/supercontest/SuperContestHome";
 
 Vue.use(Router);
 
@@ -26,9 +26,9 @@ const routes = [
         component: UserHomepage,
     },
     {
-        path: '/results',
-        name: 'ResultsTable',
-        component: ResultsTable,
+        path: '/supercontest',
+        name: 'SuperContestHome',
+        component: SuperContestHome,
     },
 ];
 
