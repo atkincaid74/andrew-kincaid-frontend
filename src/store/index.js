@@ -130,7 +130,17 @@ export const actions = {
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');
         }
-    }
+    },
+    getSCSummary({commit}) {
+        try {
+            return DjangoAPI.getSCSummary();
+        } catch (e) {
+            console.log(e);
+            commit('setSnackbarMessage', 'Error getting result summary. Please try again or contact Andrew.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
 };
 
 const store = new Vuex.Store({

@@ -30,4 +30,10 @@ export default {
             .post('/api/update_results/')
             .catch(err => {console.log(err); throw err.response})
     },
+    getSCSummary() {
+        return axios
+            .get('/api/get_pick_summary/')
+            .then(response => (response))
+            .catch(err => {console.log(err); throw err.response})
+    }
 }

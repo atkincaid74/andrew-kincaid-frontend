@@ -1,44 +1,56 @@
 <template>
     <v-card>
         <v-card-title>
-            <v-btn
-                color="warning"
-                @click="updateGames"
-                :loading="loading"
-            >Update Games</v-btn>
-            <v-spacer></v-spacer>
-            <v-text-field
-                v-model="search"
-                :append-icon="searchIcon"
-                label="Search"
-                single-line
-                hide-details
-            ></v-text-field>
+
+            <v-container>
+                <v-row>Game by Game Results</v-row>
+                <v-row>
+                    <v-btn
+                        color="warning"
+                        @click="updateGames"
+                        :loading="loading"
+                        class="mt-3"
+                    >Update Games
+                    </v-btn>
+                    <v-spacer></v-spacer>
+                    <v-text-field
+                        v-model="search"
+                        :append-icon="searchIcon"
+                        label="Search"
+                        single-line
+                        hide-details
+                    ></v-text-field>
+                </v-row>
+            </v-container>
         </v-card-title>
-        <v-data-table
-            :headers="headers"
-            :items="items"
-            :search="search"
-            :loading="loading"
-            dense
-        >
-            <template
-                v-slot:item.andrewsPick="{ item }"
+        <v-card-text>
+            <v-data-table
+                :headers="headers"
+                :items="items"
+                :search="search"
+                :loading="loading"
+                dense
             >
-                <v-chip
-                    :color="getColor(item.andrewsPick, item.winner)"
-                    dark
-                >{{ item.andrewsPick }}</v-chip>
-            </template>
-            <template
-                v-slot:item.stevesPick="{ item }"
-            >
-                <v-chip
-                    :color="getColor(item.stevesPick, item.winner)"
-                    dark
-                >{{ item.stevesPick }}</v-chip>
-            </template>
-        </v-data-table>
+                <template
+                    v-slot:item.andrewsPick="{ item }"
+                >
+                    <v-chip
+                        :color="getColor(item.andrewsPick, item.winner)"
+                        dark
+                    >{{ item.andrewsPick }}
+                    </v-chip>
+                </template>
+                <template
+                    v-slot:item.stevesPick="{ item }"
+                >
+                    <v-chip
+                        :color="getColor(item.stevesPick, item.winner)"
+                        dark
+                    >{{ item.stevesPick }}
+                    </v-chip>
+                </template>
+            </v-data-table>
+        </v-card-text>
     </v-card>
 </template>
 
