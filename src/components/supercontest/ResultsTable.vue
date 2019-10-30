@@ -32,7 +32,7 @@
                 :items="items"
                 :search="search"
                 :loading="loading"
-                dense
+                :dense="dense"
             >
                 <template
                     v-slot:item.andrewsPick="{ item }"
@@ -40,6 +40,8 @@
                     <v-chip
                         :color="getColor(item.andrewsPick, item.winner)"
                         dark
+                        :small="dense"
+                        class="ma-1"
                     >{{ item.andrewsPick }}
                     </v-chip>
                 </template>
@@ -49,6 +51,8 @@
                     <v-chip
                         :color="getColor(item.stevesPick, item.winner)"
                         dark
+                        :small="dense"
+                        class="ma-1"
                     >{{ item.stevesPick }}
                     </v-chip>
                 </template>
@@ -115,6 +119,11 @@
                 await this.getResults();
                 this.loading = false;
             },
+        },
+        computed: {
+            dense() {
+                return this.$vuetify.breakpoint.name !== 'xs';
+            }
         },
     }
 </script>

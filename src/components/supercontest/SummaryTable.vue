@@ -1,6 +1,6 @@
 <template>
     <v-card
-        max-width="600"
+        :max-width="width"
         class="mx-auto my-2"
         raised
     >
@@ -12,7 +12,7 @@
                 :headers="headers"
                 :items="items"
                 :loading="loading"
-                dense
+                :dense="dense"
                 disable-pagination
                 hide-default-footer
             >
@@ -22,6 +22,7 @@
                     <v-chip
                         :color="getColor(item.andrew_win, item.steve_win)"
                         dark
+                        :small="dense"
                     >{{ item.andrew_win }}
                     </v-chip>
                 </template>
@@ -31,6 +32,8 @@
                     <v-chip
                         :color="getColor(item.steve_win, item.andrew_win)"
                         dark
+                        :small="dense"
+                        class="ma-1"
                     >{{ item.steve_win }}
                     </v-chip>
                 </template>
@@ -87,6 +90,14 @@
                 other = parseInt(other);
                 return player > other ? 'green' : player === other ? 'warning' : 'red'
             },
+        },
+        computed: {
+            dense() {
+                return this.$vuetify.breakpoint.name !== 'xs';
+            },
+            width() {
+                return this.dense ? '600' : '95%'
+            }
         },
     }
 </script>
