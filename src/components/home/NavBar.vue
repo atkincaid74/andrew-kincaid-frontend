@@ -39,32 +39,29 @@
             <v-divider></v-divider>
 
             <v-list-item
+                @click="goHome"
+                class="my-1"
+            >
+                <v-list-item-icon>
+                    <v-icon>{{ HomeIcon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                    Home
+                </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
                 v-if="username !== null"
+                @click="goToSuperContest"
+                class="my-1"
             >
                 <v-list-item-icon>
                     <v-icon>{{ SCIcon }}</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title
-                    @click="goToSuperContest"
-                >
+                <v-list-item-title>
                     The Real Super-Contest
                 </v-list-item-title>
             </v-list-item>
-
-
-            <!--      <v-list-item-->
-            <!--          v-for="item in items"-->
-            <!--          :key="item.title"-->
-            <!--          link-->
-            <!--      >-->
-            <!--        <v-list-item-icon>-->
-            <!--          <v-icon>{{ item.icon }}</v-icon>-->
-            <!--        </v-list-item-icon>-->
-
-            <!--        <v-list-item-content>-->
-            <!--          <v-list-item-title>{{ item.title }}</v-list-item-title>-->
-            <!--        </v-list-item-content>-->
-            <!--      </v-list-item>-->
         </v-list>
 
     </v-navigation-drawer>
@@ -73,12 +70,13 @@
 <script>
     import { mapState, mapGetters } from 'vuex';
     import UserIcon from "./UserIcon";
-    import { mdiCashMultiple } from '@mdi/js';
+    import { mdiCashMultiple, mdiHome } from '@mdi/js';
 
     export default {
         name: "NavBar",
         data: () => ({
             SCIcon: mdiCashMultiple,
+            HomeIcon: mdiHome,
         }),
         components: {
             UserIcon,
@@ -102,6 +100,10 @@
             },
         },
         methods: {
+            goHome() {
+                this.$router.push({name: 'Home'});
+                this.toggleNavBar()
+            },
             goToLogin() {
                 this.$router.push({name: 'Login'});
                 this.toggleNavBar()
