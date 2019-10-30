@@ -51,6 +51,19 @@
             </v-list-item>
 
             <v-list-item
+                v-if="username === 'andrew'"
+                @click="goToAdmin"
+                class="my-1"
+            >
+                <v-list-item-icon>
+                    <v-icon>{{ AdminIcon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                    Admin Tools
+                </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
                 v-if="username !== null"
                 @click="goToSuperContest"
                 class="my-1"
@@ -83,7 +96,7 @@
 <script>
     import { mapState, mapGetters } from 'vuex';
     import UserIcon from "./UserIcon";
-    import { mdiCashMultiple, mdiHome, mdiFootball } from '@mdi/js';
+    import { mdiCashMultiple, mdiHome, mdiFootball, mdiMushroom } from '@mdi/js';
 
     export default {
         name: "NavBar",
@@ -91,6 +104,7 @@
             SCIcon: mdiCashMultiple,
             HomeIcon: mdiHome,
             FootballIcon: mdiFootball,
+            AdminIcon: mdiMushroom,
         }),
         components: {
             UserIcon,
@@ -120,6 +134,10 @@
             },
             goToLogin() {
                 this.$router.push({name: 'Login'});
+                this.toggleNavBar()
+            },
+            goToAdmin() {
+                this.$router.push({name: 'AdminHome'});
                 this.toggleNavBar()
             },
             goToUserHomepage() {

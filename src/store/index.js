@@ -141,6 +141,20 @@ export const actions = {
             commit('toggleDisplaySnackbar');
         }
     },
+    async submitValidEmail({commit}, payload) {
+        try {
+            await DjangoAPI.submitValidEmail(payload);
+            commit('setSnackbarMessage', 'Email submitted successfully.');
+            commit('setSnackbarColor', 'success');
+            commit('toggleDisplaySnackbar');
+        } catch (e) {
+            console.log(e);
+            const errorMessage = e.status === 406 ? e.data : 'Error submitting email.';
+            commit('setSnackbarMessage', errorMessage);
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
 };
 
 const store = new Vuex.Store({

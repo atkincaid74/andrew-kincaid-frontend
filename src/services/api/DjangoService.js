@@ -35,5 +35,11 @@ export default {
             .get('/api/get_pick_summary/')
             .then(response => (response))
             .catch(err => {console.log(err); throw err.response})
-    }
+    },
+    submitValidEmail(payload) {
+        return axios
+            .post('/api/submit_email/', payload)
+            .then(response => (response))
+            .catch(err => {console.log(err); throw err.response})
+    },
 }

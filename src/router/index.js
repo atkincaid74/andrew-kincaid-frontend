@@ -8,6 +8,7 @@ import UserHomepage from "../components/home/UserHomepage";
 import SuperContestHome from "../components/supercontest/SuperContestHome";
 import Homepage from "../components/home/Homepage";
 import PickSixHome from "../components/pickem/PickSixHome";
+import AdminPage from "../components/home/AdminPage";
 
 Vue.use(Router);
 
@@ -21,6 +22,11 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login,
+    },
+    {
+        path: '/admin',
+        name: 'AdminHome',
+        component: AdminPage,
     },
     {
         path: '/userhome',
