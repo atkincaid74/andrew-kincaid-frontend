@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card
-            max-width="50%"
+            :max-width="width"
             class="mx-auto my-10"
         >
             <v-card-title>
@@ -82,6 +82,13 @@
                 !this.$v.enteredPass.required && errors.push('Password is required');
                 return errors
             },
+            width() {
+                if (['xs', 'sm'].indexOf(this.$vuetify.breakpoint.name) > -1) {
+                    return '95%'
+                } else {
+                    return '50%'
+                }
+            }
         },
         data: () => ({
             enteredUser: null,
