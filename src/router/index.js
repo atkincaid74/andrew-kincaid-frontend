@@ -6,6 +6,7 @@ import HelloWorld from "../components/HelloWorld";
 import Login from "../components/home/Login";
 import UserHomepage from "../components/home/UserHomepage";
 import SuperContestHome from "../components/supercontest/SuperContestHome";
+import Homepage from "../components/home/Homepage";
 
 Vue.use(Router);
 
@@ -13,7 +14,7 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: HelloWorld,
+        component: Homepage,
     },
     {
         path: '/login',
