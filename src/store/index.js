@@ -143,14 +143,13 @@ export const actions = {
     },
     async submitValidEmail({commit}, payload) {
         try {
-            await DjangoAPI.submitValidEmail(payload);
-            commit('setSnackbarMessage', 'Email submitted successfully.');
+            const response = await DjangoAPI.submitValidEmail(payload);
+            commit('setSnackbarMessage', response.data);
             commit('setSnackbarColor', 'success');
             commit('toggleDisplaySnackbar');
         } catch (e) {
             console.log(e);
-            const errorMessage = e.status === 406 ? e.data : 'Error submitting email.';
-            commit('setSnackbarMessage', errorMessage);
+            commit('setSnackbarMessage', 'Error submitting email.');
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');
         }

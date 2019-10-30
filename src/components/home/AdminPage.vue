@@ -4,7 +4,7 @@
             max-width="500"
             class="mx-auto mt-2"
         >
-            <v-card-title>Add Valid Email</v-card-title>
+            <v-card-title>Add Email/ Mark Email Paid</v-card-title>
             <v-card-text>
                 <v-text-field
                     label="Email"
