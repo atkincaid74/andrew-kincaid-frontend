@@ -7,6 +7,7 @@ import Login from "../components/home/Login";
 import UserHomepage from "../components/home/UserHomepage";
 import SuperContestHome from "../components/supercontest/SuperContestHome";
 import Homepage from "../components/home/Homepage";
+import PickSixHome from "../components/pickem/PickSixHome";
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ const routes = [
         path: '/supercontest',
         name: 'SuperContestHome',
         component: SuperContestHome,
+    },
+    {
+        path: '/picksix',
+        name: 'PickSixHome',
+        component: PickSixHome,
     },
 ];
 

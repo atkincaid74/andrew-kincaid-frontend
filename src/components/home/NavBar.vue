@@ -62,6 +62,19 @@
                     The Real Super-Contest
                 </v-list-item-title>
             </v-list-item>
+
+            <v-list-item
+                v-if="username !== null"
+                @click="goToPickSix"
+                class="my-1"
+            >
+                <v-list-item-icon>
+                    <v-icon>{{ FootballIcon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                    Pick 6
+                </v-list-item-title>
+            </v-list-item>
         </v-list>
 
     </v-navigation-drawer>
@@ -70,13 +83,14 @@
 <script>
     import { mapState, mapGetters } from 'vuex';
     import UserIcon from "./UserIcon";
-    import { mdiCashMultiple, mdiHome } from '@mdi/js';
+    import { mdiCashMultiple, mdiHome, mdiFootball } from '@mdi/js';
 
     export default {
         name: "NavBar",
         data: () => ({
             SCIcon: mdiCashMultiple,
             HomeIcon: mdiHome,
+            FootballIcon: mdiFootball,
         }),
         components: {
             UserIcon,
@@ -114,6 +128,10 @@
             },
             goToSuperContest() {
                 this.$router.push({name: 'SuperContestHome'});
+                this.toggleNavBar()
+            },
+            goToPickSix() {
+                this.$router.push({name: 'PickSixHome'});
                 this.toggleNavBar()
             },
             toggleNavBar() {
