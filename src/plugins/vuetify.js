@@ -23,10 +23,10 @@ export default new Vuetify({
         primary: '#00786A',
         secondary: '#607d8b',
         accent: '#00bcd4',
-        error: '#f44336',
-        warning: '#ff9800',
-        info: '#ffc107',
-        success: '#4caf50',
+        error: '#db3f35',
+        warning: '#D89C07',
+        info: '#d37000',
+        success: '#4a964b',
       }
     }
   }

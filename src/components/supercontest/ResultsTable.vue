@@ -9,7 +9,7 @@
                 <v-row>Game by Game Results</v-row>
                 <v-row>
                     <v-btn
-                        color="warning"
+                        color="info"
                         @click="updateGames"
                         :loading="loading"
                         class="mt-3"
@@ -107,7 +107,11 @@
             },
             async updateGames() {
                 this.loading = true;
-                await this.$store.dispatch('updateGames');
+                try {
+                    await this.$store.dispatch('updateGames');
+                } catch (e) {
+                    console.log(e);
+                }
                 await this.getResults();
                 this.loading = false;
             },
