@@ -19,11 +19,13 @@ export const state = {
     snackbarMessage: '',
     snackbarColor: 'error',
     authHeader: null,
+    privileges: [],
 };
 
 export const getters = {
     getNavBar: state => state.navBarVisible,
     getToken: state => state.token,
+    getPrivileges: state => state.privileges,
 };
 
 export const mutations = {
@@ -53,6 +55,9 @@ export const mutations = {
     },
     setSnackbarColor (state, payload) {
         state.snackbarColor = payload;
+    },
+    setPrivileges (state, payload) {
+        state.privileges = payload;
     },
 };
 
@@ -98,6 +103,7 @@ export const actions = {
             commit('setUserFirstName', data.firstName);
             commit('setUserLastName', data.lastName);
             commit('setUserPaid', data.paid);
+            commit('setPrivileges', JSON.parse(data.privileges));
             return Promise.resolve(response)
         } catch (e) {
             return Promise.reject(response)
@@ -109,6 +115,7 @@ export const actions = {
         commit('setUserFirstName', null);
         commit('setUserLastName', null);
         commit('setUserPaid', null);
+        commit('setPrivileges', []);
         // delete axios.defaults.headers['Authorization'];
     },
     getResults({commit, state}, payload) {
@@ -171,6 +178,7 @@ const store = new Vuex.Store({
                 'userLastName',
                 'userPaid',
                 'token',
+                'privileges',
             ]
         })
     ]

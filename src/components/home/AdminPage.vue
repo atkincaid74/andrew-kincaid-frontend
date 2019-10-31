@@ -22,6 +22,16 @@
                     v-model="paid"
                 ></v-switch>
                 <v-spacer></v-spacer>
+                <v-switch
+                    label="SC"
+                    v-model="superContest"
+                ></v-switch>
+                <v-spacer></v-spacer>
+                <v-switch
+                    label="P6"
+                    v-model="pickSix"
+                ></v-switch>
+                <v-spacer></v-spacer>
                 <v-btn
                     @click="submitEmail"
                     :loading="loading"
@@ -42,6 +52,8 @@
             email: null,
             loading: false,
             paid: false,
+            superContest: true,
+            pickSix: true,
         }),
         mixins: [validationMixin],
         validations: {
@@ -58,7 +70,12 @@
         methods: {
             async submitEmail() {
                 try {
-                    await this.$store.dispatch('submitValidEmail', {email: this.email, paid: this.paid});
+                    await this.$store.dispatch('submitValidEmail', {
+                        email: this.email,
+                        paid: this.paid,
+                        superContest: this.superContest,
+                        pickSix: this.pickSix,
+                    });
                     this.loading = false;
                 } catch (e) {
                     console.log(e);

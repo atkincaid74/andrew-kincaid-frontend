@@ -34,7 +34,6 @@ export default {
     this.$store.watch(
         () => {return this.getToken},
         () => {
-          console.log('token', this.getToken);
           if (this.getToken) {
             axios.defaults.headers['Authorization'] = `JWT ${this.getToken}`;
           }

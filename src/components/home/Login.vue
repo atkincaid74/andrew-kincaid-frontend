@@ -119,8 +119,10 @@
                 try {
                     const response = await this.$store.dispatch('getUserInfo', {
                         username: this.enteredUser.toLowerCase()
-                    })
+                    });
+                    // console.log('priv', this.$store.state.privileges)
                 } catch (e) {
+                    console.log(e);
                     this.$store.commit('setSnackbarMessage', 'Error getting user info');
                     this.$store.commit('setSnackbarColor', 'error');
                     this.$store.commit('toggleDisplaySnackbar');
