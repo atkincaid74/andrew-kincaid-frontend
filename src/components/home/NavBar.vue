@@ -51,7 +51,7 @@
             </v-list-item>
 
             <v-list-item
-                v-if="username === 'andrew'"
+                v-if="privileges.indexOf('admin') > -1"
                 @click="goToAdmin"
                 class="my-1"
             >
@@ -64,7 +64,7 @@
             </v-list-item>
 
             <v-list-item
-                v-if="username !== null"
+                v-if="privileges.indexOf('supercontest') > -1"
                 @click="goToSuperContest"
                 class="my-1"
             >
@@ -77,7 +77,7 @@
             </v-list-item>
 
             <v-list-item
-                v-if="username !== null"
+                v-if="privileges.indexOf('picksix') > -1"
                 @click="goToPickSix"
                 class="my-1"
             >
@@ -115,6 +115,7 @@
                 username: state => state.username,
                 userFirstName: state => state.userFirstName,
                 userLastName: state => state.userLastName,
+                privileges: state => state.privileges,
             }),
             ...mapGetters({
                 getNavBar: 'getNavBar',

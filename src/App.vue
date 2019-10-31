@@ -12,7 +12,6 @@
 <script>
 import {mapGetters} from 'vuex';
 import axios from 'axios';
-import HelloWorld from './components/HelloWorld';
 import AppBar from "./components/home/AppBar";
 import NavBar from "./components/home/NavBar";
 import Snackbar from "./components/home/Snackbar";
@@ -20,7 +19,6 @@ import Snackbar from "./components/home/Snackbar";
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     AppBar,
     NavBar,
     Snackbar,

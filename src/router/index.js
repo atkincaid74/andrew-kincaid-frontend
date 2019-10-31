@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store';
 
-import HelloWorld from "../components/HelloWorld";
 import Login from "../components/home/Login";
 import UserHomepage from "../components/home/UserHomepage";
 import SuperContestHome from "../components/supercontest/SuperContestHome";
