@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import Es6Promise from 'es6-promise';
 import DjangoAPI from '../services/api/DjangoService';
 import createPersistedState from "vuex-persistedstate";
-import axios from 'axios';
 
 Es6Promise.polyfill();
 Vue.use(Vuex);
@@ -62,7 +61,7 @@ export const mutations = {
 };
 
 export const actions = {
-    async getToken({ commit, state }, payload) {
+    async getToken({ commit }, payload) {
         const response = await DjangoAPI.getToken(payload);
         try {
             commit('setUser', payload.username);
@@ -77,7 +76,7 @@ export const actions = {
     logResumeLink() {
         DjangoAPI.logResumeHit();
     },
-    async createNewUser({ commit, state }, payload) {
+    async createNewUser({ commit }, payload) {
         const response = await DjangoAPI.createNewUser(payload);
         const data = response.data;
 
@@ -99,7 +98,7 @@ export const actions = {
             commit('toggleDisplaySnackbar');
         }
     },
-    async getUserInfo({ commit, state }, payload) {
+    async getUserInfo({ commit }, payload) {
         const response = await DjangoAPI.getUserInfo(payload);
         const data = response.data;
         try {
@@ -112,20 +111,18 @@ export const actions = {
             return Promise.reject(response)
         }
     },
-    logout({ commit, state }) {
+    logout({ commit }) {
         commit('setToken', null);
         commit('setUser', null);
         commit('setUserFirstName', null);
         commit('setUserLastName', null);
         commit('setUserPaid', null);
         commit('setPrivileges', []);
-        // delete axios.defaults.headers['Authorization'];
     },
-    getResults({commit, state}, payload) {
+    getResults({commit}, payload) {
         try {
             return DjangoAPI.getResults(payload);
         } catch (e) {
-            console.log(e);
             commit('setSnackbarMessage', 'Error getting results. Please try again or contact Andrew.');
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');
@@ -135,7 +132,6 @@ export const actions = {
         try {
             DjangoAPI.updateGames();
         } catch (e) {
-            console.log(e);
             commit('setSnackbarMessage', 'Error updating results. Please try again or contact Andrew.');
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');
@@ -145,7 +141,6 @@ export const actions = {
         try {
             return DjangoAPI.getSCSummary();
         } catch (e) {
-            console.log(e);
             commit('setSnackbarMessage', 'Error getting result summary. Please try again or contact Andrew.');
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');
@@ -158,7 +153,6 @@ export const actions = {
             commit('setSnackbarColor', 'success');
             commit('toggleDisplaySnackbar');
         } catch (e) {
-            console.log(e);
             commit('setSnackbarMessage', 'Error submitting email.');
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');

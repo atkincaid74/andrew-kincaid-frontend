@@ -12,7 +12,6 @@
                     <v-text-field
                         v-model="enteredUser"
                         label="Username"
-                        @submit=""
                         @keydown.enter.prevent=""
                         autofocus
                         @change="$v.enteredUser.$touch()"
@@ -23,7 +22,6 @@
                         v-model="enteredPass"
                         label="Password"
                         type="password"
-                        @submit=""
                         @keydown.enter.native="submitLoginInfo"
                         @change="$v.enteredPass.$touch()"
                         @blur="$v.enteredPass.$touch()"
@@ -52,8 +50,7 @@
 
 <script>
     import { validationMixin } from 'vuelidate';
-    import { required, minLength, maxLength, sameAs, email } from 'vuelidate/lib/validators';
-    import { mapState } from 'vuex';
+    import { required, minLength, maxLength } from 'vuelidate/lib/validators';
     import NewUser from "./NewUser";
 
     export default {
@@ -99,9 +96,8 @@
         methods: {
             async submitLoginInfo() {
                 this.loading = true;
-                let response;
                 try {
-                    response = await this.$store.dispatch('getToken', {
+                    await this.$store.dispatch('getToken', {
                         username: this.enteredUser.toLowerCase(),
                         password: this.enteredPass
                     });
@@ -117,12 +113,10 @@
             },
             async getUserInfo() {
                 try {
-                    const response = await this.$store.dispatch('getUserInfo', {
+                    await this.$store.dispatch('getUserInfo', {
                         username: this.enteredUser.toLowerCase()
                     });
-                    // console.log('priv', this.$store.state.privileges)
                 } catch (e) {
-                    console.log(e);
                     this.$store.commit('setSnackbarMessage', 'Error getting user info');
                     this.$store.commit('setSnackbarColor', 'error');
                     this.$store.commit('toggleDisplaySnackbar');

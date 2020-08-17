@@ -13,7 +13,7 @@
                 username: state => state.username,
             }),
             userIcon() {
-                return !!this.username ? mdiAccountCircle : mdiAccountCircleOutline
+                return this.username ? mdiAccountCircle : mdiAccountCircleOutline
             },
         },
 

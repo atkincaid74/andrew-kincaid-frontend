@@ -101,7 +101,6 @@
                     );
                     this.loading = false;
                 } catch(err) {
-                    console.log(err);
                     this.loading = false;
                 }
 
@@ -114,7 +113,7 @@
                 try {
                     await this.$store.dispatch('updateGames');
                 } catch (e) {
-                    console.log(e);
+                    this.loading = false;
                 }
                 await this.getResults();
                 this.loading = false;

@@ -78,10 +78,8 @@
                 try {
                     const response = await this.$store.dispatch('getSCSummary');
                     this.items = JSON.parse(response.data);
-                    console.log(this.items);
                     this.loading = false;
                 } catch(err) {
-                    console.log(err);
                     this.loading = false;
                 }
             },
