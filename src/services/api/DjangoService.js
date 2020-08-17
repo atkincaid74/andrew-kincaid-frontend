@@ -42,4 +42,9 @@ export default {
             .then(response => (response))
             .catch(err => {console.log(err); throw err.response})
     },
+    logResumeHit() {
+        axios
+            .post('/api/log_resume_hit/')
+            .catch(err => {console.log(err); throw err.response})
+    }
 }

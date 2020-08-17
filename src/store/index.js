@@ -74,6 +74,9 @@ export const actions = {
             return Promise.reject(response)
         }
     },
+    logResumeLink() {
+        DjangoAPI.logResumeHit();
+    },
     async createNewUser({ commit, state }, payload) {
         const response = await DjangoAPI.createNewUser(payload);
         const data = response.data;
