@@ -35,18 +35,12 @@
                 <span>atkincaid74@gmail.com</span>
             </v-tooltip>
             <v-spacer></v-spacer>
-            <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                    <div v-on="on">
-                        <v-btn
-                            text
-                            disabled
-                        >resume
-                        </v-btn>
-                    </div>
-                </template>
-                <span>Coming soon...</span>
-            </v-tooltip>
+            <v-btn
+                text
+                :href="`${publicPath}AndrewKincaidResume.pdf`"
+                target="_blank"
+            >resume
+            </v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
     </v-card>
@@ -56,7 +50,8 @@
     export default {
         name: "Homepage",
         data: () => ({
-            githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend'
+            githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend',
+            publicPath: process.env.BASE_URL
         }),
     }
 </script>
