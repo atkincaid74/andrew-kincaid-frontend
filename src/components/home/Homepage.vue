@@ -53,6 +53,16 @@
             githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend',
             publicPath: process.env.BASE_URL
         }),
+        methods: {
+            logResume() {
+                if (this.$route.path === '/resume') {
+                    this.$store.dispatch('logResumeHit');
+                }
+            }
+        },
+        mounted() {
+            this.logResume();
+        }
     }
 </script>
 
