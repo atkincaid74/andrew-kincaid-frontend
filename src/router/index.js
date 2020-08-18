@@ -15,11 +15,7 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Homepage,
-    },
-    {
-        path: '/resume',
-        name: 'Home',
-        component: Homepage,
+        alias: '/resume',
     },
     {
         path: '/login',
@@ -56,8 +52,6 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
     if (to === from) {
         next(false)
-    } else if (to.path.endsWith('resume')) {
-        this.$store.dispatch('logResumeLink');
     } else next()
 });
 

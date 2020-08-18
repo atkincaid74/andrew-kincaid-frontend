@@ -44,7 +44,7 @@ export default {
     },
     logResumeHit() {
         axios
-            .post('/api/log_resume_hit/')
+            .get('/api/log_resume_hit/')
             .catch(err => {throw err.response})
     }
 }

@@ -73,7 +73,7 @@ export const actions = {
             return Promise.reject(response)
         }
     },
-    logResumeLink() {
+    logResumeHit() {
         DjangoAPI.logResumeHit();
     },
     async createNewUser({ commit }, payload) {
