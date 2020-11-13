@@ -50,8 +50,8 @@ const routes = [
         component: GolfPicksHome,
     },
     {
-        path: '/details/:name',
-        name: 'Details',
+        path: '/golf/details/:name',
+        name: 'GolfDetails',
         component: Details,
     },
 ];

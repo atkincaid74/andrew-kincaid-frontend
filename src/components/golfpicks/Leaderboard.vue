@@ -4,7 +4,7 @@
       class="mx-auto mt-2"
   >
     <v-card-title>
-      <div class="mt-3">Leaderboard</div>
+      <div class="mt-3">Leaderboard - {{ status }}</div>
       <v-spacer></v-spacer>
       <v-text-field
           v-model="search"
@@ -21,6 +21,7 @@
           :search="search"
           :loading="loading"
           @click:row="handleClick"
+          :items-per-page="-1"
           dense
       ></v-data-table>
     </v-card-text>
@@ -40,6 +41,7 @@ export default {
     search: '',
     searchIcon: mdiMagnify,
     loading: false,
+    status: '',
   }),
   computed: {
     width() {
@@ -62,6 +64,7 @@ export default {
   },
   beforeMount() {
     this.getLeaderboard();
+    this.getStatus();
   },
   methods: {
     async getLeaderboard() {
@@ -70,9 +73,14 @@ export default {
       this.rawData = JSON.parse(response.data);
       this.loading = false;
     },
+    async getStatus() {
+      const response = await this.$store.dispatch('getStatus');
+      this.status = response.data;
+      this.loading = false;
+    },
     handleClick(value) {
       const name_route = value.name.replace(' ', '_')
-      this.$router.push(`/details/${name_route}`)
+      this.$router.push(`/golf/details/${name_route}`)
     }
   }
 }

@@ -58,5 +58,17 @@ export default {
             .get('/api/picks_scores/')
             .then(response => (response))
             .catch(err => {throw err.response})
+    },
+    getStatus() {
+        return axios
+            .get('/api/status/')
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    getProjectedCut() {
+        return axios
+            .get('/api/projected_cut/')
+            .then(response => (response))
+            .catch(err => {throw err.response})
     }
 }

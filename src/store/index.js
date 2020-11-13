@@ -176,6 +176,24 @@ export const actions = {
             commit('toggleDisplaySnackbar');
         }
     },
+    getStatus({commit}) {
+        try {
+            return DjangoAPI.getStatus();
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error getting status.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    getProjectedCut({commit}) {
+        try {
+            return DjangoAPI.getProjectedCut();
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error getting Projected Cut.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
 };
 
 const store = new Vuex.Store({
