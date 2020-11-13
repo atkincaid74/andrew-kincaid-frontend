@@ -46,5 +46,11 @@ export default {
         axios
             .get('/api/log_resume_hit/')
             .catch(err => {throw err.response})
+    },
+    getLeaderboard() {
+        return axios
+            .get('/api/leaderboard/')
+            .then(response => (response))
+            .catch(err => {throw err.response})
     }
 }

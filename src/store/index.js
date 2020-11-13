@@ -158,6 +158,15 @@ export const actions = {
             commit('toggleDisplaySnackbar');
         }
     },
+    getLeaderboard({commit}) {
+        try {
+            return DjangoAPI.getLeaderboard();
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error getting Leaderboard.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
 };
 
 const store = new Vuex.Store({
