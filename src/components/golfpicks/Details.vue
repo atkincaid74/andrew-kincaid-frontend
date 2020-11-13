@@ -5,6 +5,13 @@
   >
     <v-card-title>
       <div class="mt-3">{{ name }}</div>
+      <v-divider v-if="projectedCut"></v-divider>
+      <div
+          class="mt-2"
+          v-if="projectedCut"
+      >
+        Projected Cut {{ projectedCut }}
+      </div>
     </v-card-title>
     <v-card-text>
       <v-data-table
@@ -27,6 +34,7 @@ export default {
   data: () => ({
     loading: false,
     rawData: null,
+    projectedCut: null,
   }),
   computed: {
     name()  {
@@ -49,7 +57,7 @@ export default {
       } else {
         return [];
       }
-    }
+    },
   },
   methods: {
     async getDetails() {
@@ -58,9 +66,14 @@ export default {
       this.rawData = JSON.parse(response.data[this.name]);
       this.loading = false;
     },
+    async getProjectedCut() {
+      const response = await this.$store.dispatch('getProjectedCut');
+      this.projectedCut = response.data;
+    },
   },
   beforeMount() {
     this.getDetails();
+    this.getProjectedCut();
   },
 }
 </script>

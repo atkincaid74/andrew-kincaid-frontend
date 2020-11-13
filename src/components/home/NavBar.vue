@@ -51,6 +51,18 @@
             </v-list-item>
 
             <v-list-item
+                @click="goGolf"
+                class="my-1"
+            >
+              <v-list-item-icon>
+                <v-icon>{{ GolfIcon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                Golf
+              </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
                 v-if="privileges.indexOf('admin') > -1"
                 @click="goToAdmin"
                 class="my-1"
@@ -96,7 +108,7 @@
 <script>
     import { mapState, mapGetters } from 'vuex';
     import UserIcon from "./UserIcon";
-    import { mdiCashMultiple, mdiHome, mdiFootball, mdiMushroom } from '@mdi/js';
+    import { mdiCashMultiple, mdiHome, mdiFootball, mdiMushroom, mdiGolf } from '@mdi/js';
 
     export default {
         name: "NavBar",
@@ -105,6 +117,7 @@
             HomeIcon: mdiHome,
             FootballIcon: mdiFootball,
             AdminIcon: mdiMushroom,
+            GolfIcon: mdiGolf,
         }),
         components: {
             UserIcon,
@@ -131,6 +144,10 @@
         methods: {
             goHome() {
                 this.$router.push({name: 'Home'});
+                this.toggleNavBar()
+            },
+            goGolf() {
+                this.$router.push({name: 'GolfPicksHome'});
                 this.toggleNavBar()
             },
             goToLogin() {
