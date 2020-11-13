@@ -52,5 +52,11 @@ export default {
             .get('/api/leaderboard/')
             .then(response => (response))
             .catch(err => {throw err.response})
+    },
+    getPicksScores() {
+        return axios
+            .get('/api/picks_scores/')
+            .then(response => (response))
+            .catch(err => {throw err.response})
     }
 }

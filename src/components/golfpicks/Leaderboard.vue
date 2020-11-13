@@ -19,6 +19,8 @@
           :headers="headers"
           :items="items"
           :search="search"
+          :loading="loading"
+          @click:row="handleClick"
           dense
       ></v-data-table>
     </v-card-text>
@@ -37,6 +39,7 @@ export default {
     rawData: null,
     search: '',
     searchIcon: mdiMagnify,
+    loading: false,
   }),
   computed: {
     width() {
@@ -45,11 +48,15 @@ export default {
     headers() {
       if (this.rawData) {
         return Object.keys(this.rawData[0]).map(key => ({text: key, align: 'left', value: key}));
+      } else {
+        return []
       }
     },
     items() {
       if (this.rawData) {
         return Object.values(this.rawData);
+      } else {
+        return []
       }
     }
   },
@@ -58,8 +65,14 @@ export default {
   },
   methods: {
     async getLeaderboard() {
+      this.loading = true;
       const response = await this.$store.dispatch('getLeaderboard');
       this.rawData = JSON.parse(response.data);
+      this.loading = false;
+    },
+    handleClick(value) {
+      const name_route = value.name.replace(' ', '_')
+      this.$router.push(`/details/${name_route}`)
     }
   }
 }

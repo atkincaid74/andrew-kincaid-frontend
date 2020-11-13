@@ -8,6 +8,7 @@ import Homepage from "../components/home/Homepage";
 import PickSixHome from "../components/pickem/PickSixHome";
 import AdminPage from "../components/home/AdminPage";
 import GolfPicksHome from "@/components/golfpicks/GolfPicksHome";
+import Details from "@/components/golfpicks/Details";
 
 Vue.use(Router);
 
@@ -47,6 +48,11 @@ const routes = [
         path: '/golf',
         name: 'GolfPicksHome',
         component: GolfPicksHome,
+    },
+    {
+        path: '/details/:name',
+        name: 'Details',
+        component: Details,
     },
 ];
 
