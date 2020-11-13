@@ -7,6 +7,7 @@ import SuperContestHome from "../components/supercontest/SuperContestHome";
 import Homepage from "../components/home/Homepage";
 import PickSixHome from "../components/pickem/PickSixHome";
 import AdminPage from "../components/home/AdminPage";
+import GolfPicksHome from "@/components/golfpicks/GolfPicksHome";
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ const routes = [
         path: '/picksix',
         name: 'PickSixHome',
         component: PickSixHome,
+    },
+    {
+        path: '/golf',
+        name: 'GolfPicksHome',
+        component: GolfPicksHome,
     },
 ];
 
