@@ -167,6 +167,15 @@ export const actions = {
             commit('toggleDisplaySnackbar');
         }
     },
+    getPickDetails({commit}) {
+        try {
+            return DjangoAPI.getPicksScores();
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error getting details.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
 };
 
 const store = new Vuex.Store({
