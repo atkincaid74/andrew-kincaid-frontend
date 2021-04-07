@@ -53,6 +53,30 @@ export default {
             .then(response => (response))
             .catch(err => {throw err.response})
     },
+    getPlayers() {
+        return axios
+            .get('/api/picks/')
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    addPlayer(payload) {
+        return axios
+            .post('/api/picks/', payload)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    editPlayer(payload) {
+        return axios
+            .put('/api/picks/', payload)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    deletePlayer(payload) {
+        return axios
+            .delete('/api/picks/', { data: payload })
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
     getPicksScores() {
         return axios
             .get('/api/picks_scores/')

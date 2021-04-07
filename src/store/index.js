@@ -166,6 +166,42 @@ export const actions = {
             commit('toggleDisplaySnackbar');
         }
     },
+    getPlayers({commit}) {
+        try {
+            return DjangoAPI.getPlayers();
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error getting Players.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    addPlayer({commit}, payload) {
+        try {
+            return DjangoAPI.addPlayer(payload);
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error saving new player.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    editPlayer({commit}, payload) {
+        try {
+            return DjangoAPI.editPlayer(payload);
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error editing player.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    deletePlayer({commit}, payload) {
+        try {
+            return DjangoAPI.deletePlayer(payload);
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error deleting player.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
     getPickDetails({commit}) {
         try {
             return DjangoAPI.getPicksScores();

@@ -11,6 +11,7 @@ import PickSixHome from "../components/pickem/PickSixHome";
 import AdminPage from "../components/home/AdminPage";
 import GolfPicksHome from "@/components/golfpicks/GolfPicksHome";
 import Details from "@/components/golfpicks/Details";
+import GolfAdmin from "@/components/golfpicks/GolfAdmin";
 
 Vue.use(Router);
 
@@ -70,6 +71,14 @@ const routes = [
         component: GolfPicksHome,
         meta: {
             requiresAuth: false,
+        }
+    },
+    {
+        path: '/golf/admin',
+        name: 'GolfAdmin',
+        component: GolfAdmin,
+        meta: {
+            requiresAuth: true,
         }
     },
     {
