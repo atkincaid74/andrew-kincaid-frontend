@@ -9,7 +9,7 @@ export default {
     },
     getToken(payload) {
         return axios
-            .post('/api/auth/', payload)
+            .post('/api/login/', payload)
             .then(response => (response))
             .catch(err => {throw err.response})
     },

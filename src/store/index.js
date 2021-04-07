@@ -61,12 +61,11 @@ export const mutations = {
 };
 
 export const actions = {
-    async getToken({ commit }, payload) {
+    async getTokenLogin({ commit }, payload) {
         const response = await DjangoAPI.getToken(payload);
         try {
             commit('setUser', payload.username);
-            commit('setToken', response.data.token);
-            // axios.defaults.headers['Authorization'] = `JWT ${state.token}`;
+            commit('setToken', `Token ${response.data.token}`);
             return Promise.resolve(response)
         } catch (e) {
             // todo fill out
