@@ -97,7 +97,7 @@
             async submitLoginInfo() {
                 this.loading = true;
                 try {
-                    await this.$store.dispatch('getToken', {
+                    await this.$store.dispatch('getTokenLogin', {
                         username: this.enteredUser.toLowerCase(),
                         password: this.enteredPass
                     });

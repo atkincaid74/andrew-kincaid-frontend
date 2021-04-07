@@ -3,9 +3,9 @@
     <Snackbar></Snackbar>
     <NavBar></NavBar>
     <AppBar></AppBar>
-    <v-content>
+    <v-main>
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -33,7 +33,7 @@ export default {
         () => {return this.getToken},
         () => {
           if (this.getToken) {
-            axios.defaults.headers['Authorization'] = `JWT ${this.getToken}`;
+            axios.defaults.headers['Authorization'] = this.getToken;
           }
           else if (axios.defaults.headers['Authorization']) {
             delete axios.defaults.headers['Authorization'];
@@ -47,7 +47,7 @@ export default {
   methods: {
     refreshAxiosHeaders() {
       if (this.getToken) {
-        axios.defaults.headers['Authorization'] = `JWT ${this.getToken}`;
+        axios.defaults.headers['Authorization'] = this.getToken;
       }
       else if (axios.defaults.headers['Authorization']) {
         delete axios.defaults.headers['Authorization'];

@@ -61,12 +61,11 @@ export const mutations = {
 };
 
 export const actions = {
-    async getToken({ commit }, payload) {
+    async getTokenLogin({ commit }, payload) {
         const response = await DjangoAPI.getToken(payload);
         try {
             commit('setUser', payload.username);
-            commit('setToken', response.data.token);
-            // axios.defaults.headers['Authorization'] = `JWT ${state.token}`;
+            commit('setToken', `Token ${response.data.token}`);
             return Promise.resolve(response)
         } catch (e) {
             // todo fill out
@@ -163,6 +162,42 @@ export const actions = {
             return DjangoAPI.getLeaderboard();
         } catch (e) {
             commit('setSnackbarMessage', 'Error getting Leaderboard.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    getPlayers({commit}) {
+        try {
+            return DjangoAPI.getPlayers();
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error getting Players.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    addPlayer({commit}, payload) {
+        try {
+            return DjangoAPI.addPlayer(payload);
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error saving new player.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    editPlayer({commit}, payload) {
+        try {
+            return DjangoAPI.editPlayer(payload);
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error editing player.');
+            commit('setSnackbarColor', 'error');
+            commit('toggleDisplaySnackbar');
+        }
+    },
+    deletePlayer({commit}, payload) {
+        try {
+            return DjangoAPI.deletePlayer(payload);
+        } catch (e) {
+            commit('setSnackbarMessage', 'Error deleting player.');
             commit('setSnackbarColor', 'error');
             commit('toggleDisplaySnackbar');
         }
