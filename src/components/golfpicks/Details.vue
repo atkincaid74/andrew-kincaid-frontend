@@ -19,6 +19,7 @@
           :items="items"
           :loading="loading"
           dense
+          hide-default-footer
       ></v-data-table>
     </v-card-text>
     <v-card-actions>
