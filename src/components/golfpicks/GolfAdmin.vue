@@ -72,7 +72,7 @@
                           cols="12"
                           sm="6"
                           md="4"
-                          v-for="player in headers.map(e => e.text).filter(e => e.startsWith('player'))"
+                          v-for="player in headers.map(e => e.value).filter(e => e.startsWith('player'))"
                       >
                         <v-select
                             v-model="editedItem[player]"

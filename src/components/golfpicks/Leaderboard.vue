@@ -4,7 +4,7 @@
       class="mx-auto mt-2"
   >
     <v-card-title>
-      <div class="mt-3">Leaderboard - {{ status }}</div>
+      <div class="mt-3">Leaderboard | {{ status }}</div>
       <v-spacer></v-spacer>
       <v-text-field
           v-model="search"

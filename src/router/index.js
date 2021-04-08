@@ -23,6 +23,7 @@ const routes = [
         alias: '/resume',
         meta: {
             requiresAuth: false,
+            title: 'Andrew Kincaid | Home'
         }
     },
     {
@@ -31,6 +32,7 @@ const routes = [
         component: Login,
         meta: {
             requiresAuth: false,
+            title: 'Log In'
         }
     },
     {
@@ -39,6 +41,7 @@ const routes = [
         component: AdminPage,
         meta: {
             requiresAuth: true,
+            title: 'Admin'
         }
     },
     {
@@ -47,6 +50,7 @@ const routes = [
         component: UserHomepage,
         meta: {
             requiresAuth: true,
+            title: 'User Home'
         }
     },
     {
@@ -55,6 +59,7 @@ const routes = [
         component: SuperContestHome,
         meta: {
             requiresAuth: true,
+            title: 'Super Contest'
         }
     },
     {
@@ -63,6 +68,7 @@ const routes = [
         component: PickSixHome,
         meta: {
             requiresAuth: true,
+            title: 'Pick Six'
         }
     },
     {
@@ -71,6 +77,7 @@ const routes = [
         component: GolfPicksHome,
         meta: {
             requiresAuth: false,
+            title: 'Golf | Leaderboard'
         }
     },
     {
@@ -79,6 +86,7 @@ const routes = [
         component: GolfAdmin,
         meta: {
             requiresAuth: true,
+            title: 'Golf | Admin'
         }
     },
     {
@@ -87,6 +95,7 @@ const routes = [
         component: Details,
         meta: {
             requiresAuth: false,
+            title: 'Golf | Details'
         }
     },
     {
@@ -111,8 +120,13 @@ const router = new Router({
     mode: 'history',
     routes
 });
+let title = 'Andrew Kincaid';
 
 router.beforeEach((to, from, next) => {
+    if (to.meta.title) {
+        title = to.meta.title;
+    }
+    document.title = title;
     if (to === from) {
         next(false)
     } else if (to.meta.requiresAuth && !store.state.token) {
