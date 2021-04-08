@@ -160,6 +160,7 @@
 
 <script>
 import {mdiMagnify} from '@mdi/js';
+import { toTitleCase } from "@/helpers";
 
 export default {
   name: "GolfAdmin",
@@ -289,7 +290,7 @@ export default {
     },
     headers() {
       if (this.rawData) {
-        const baseHeaders = Object.keys(this.rawData[0]).map(key => ({text: key, align: 'left', value: key}));
+        const baseHeaders = Object.keys(this.rawData[0]).map(key => ({text: toTitleCase(key), align: 'left', value: key}));
         const actionHeader = [{ text: 'Actions', value: 'actions', sortable: false }, ];
         return baseHeaders.concat(actionHeader);
       } else {
@@ -311,6 +312,7 @@ export default {
     this.getPlayers();
   },
   methods: {
+    toTitleCase,
     async getPlayers() {
       this.loading = true;
       const response = await this.$store.dispatch('getPlayers');
