@@ -33,6 +33,7 @@
 
 <script>
 import {mdiMagnify} from '@mdi/js';
+import { toTitleCase } from "@/helpers";
 
 export default {
   name: "Leaderboard",
@@ -49,7 +50,7 @@ export default {
     },
     headers() {
       if (this.rawData) {
-        return Object.keys(this.rawData[0]).map(key => ({text: key, align: 'left', value: key}));
+        return Object.keys(this.rawData[0]).map(key => ({text: toTitleCase(key), align: 'left', value: key}));
       } else {
         return []
       }
@@ -67,6 +68,7 @@ export default {
     this.getStatus();
   },
   methods: {
+    toTitleCase,
     async getLeaderboard() {
       this.loading = true;
       const response = await this.$store.dispatch('getLeaderboard');
