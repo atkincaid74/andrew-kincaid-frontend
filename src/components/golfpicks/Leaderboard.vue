@@ -23,6 +23,7 @@
           @click:row="handleClick"
           :items-per-page="-1"
           dense
+          :mobile-breakpoint="0"
       ></v-data-table>
     </v-card-text>
     <v-card-actions>
@@ -50,7 +51,11 @@ export default {
     },
     headers() {
       if (this.rawData) {
-        return Object.keys(this.rawData[0]).map(key => ({text: toTitleCase(key), align: 'left', value: key}));
+        return Object.keys(this.rawData[0]).map(key => ({
+          text: toTitleCase(key),
+          align: ['Rank', 'Name'].indexOf(toTitleCase(key)) > -1 ? 'start' : 'center',
+          value: key
+        }));
       } else {
         return []
       }

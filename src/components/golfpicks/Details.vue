@@ -20,6 +20,7 @@
           :loading="loading"
           dense
           hide-default-footer
+          :mobile-breakpoint="0"
       ></v-data-table>
     </v-card-text>
     <v-card-actions>
