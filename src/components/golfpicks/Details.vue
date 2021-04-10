@@ -5,12 +5,12 @@
   >
     <v-card-title>
       <div class="mt-3">{{ name }}</div>
-      <v-divider v-if="projectedCut"></v-divider>
+      <v-divider v-if="cut"></v-divider>
       <div
           class="mt-2"
-          v-if="projectedCut"
+          v-if="cut"
       >
-        Projected Cut {{ projectedCut }}
+        {{ cutTitle }} {{ cut }}
       </div>
     </v-card-title>
     <v-card-text>
@@ -36,9 +36,13 @@ export default {
   data: () => ({
     loading: false,
     rawData: null,
-    projectedCut: null,
+    cut: null,
+    projected: null,
   }),
   computed: {
+    cutTitle () {
+      return this.projected ? 'Projected Cut' : 'Cut';
+    },
     name()  {
       return this.$route.path.split('/').slice(-1)[0].replace('_', ' ')
     },
@@ -70,7 +74,8 @@ export default {
     },
     async getProjectedCut() {
       const response = await this.$store.dispatch('getProjectedCut');
-      this.projectedCut = response.data;
+      this.cut = response.data[1];
+      this.projected = response.data[0];
     },
   },
   beforeMount() {
