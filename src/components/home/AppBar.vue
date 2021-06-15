@@ -4,13 +4,22 @@
         color="primary"
     >
         <v-app-bar-nav-icon
+            color="blackWhite"
             @click="toggleNavDrawer"
         ></v-app-bar-nav-icon>
-        <v-toolbar-title>
+        <v-toolbar-title
+            class="my-title pl-0"
+        >
             <v-btn
                 text
                 @click="goHome"
-            > Andrew Kincaid </v-btn>
+                class="btn-text"
+                color="black"
+            >
+              <span class="mr-1 mt-1">Andrew</span>
+              <img :src="sourceURL" alt="Logo" height="32" width="32"/>
+              <span class="ml-1 mt-1">Kincaid</span>
+            </v-btn>
         </v-toolbar-title>
         <v-spacer></v-spacer>
 
@@ -20,7 +29,7 @@
             text
             @click="goToUserLoginHomepage"
         >
-            <UserIcon></UserIcon>
+            <UserIcon color="blackWhite"></UserIcon>
         </v-btn>
 
         <v-menu
@@ -35,7 +44,7 @@
                     icon
                     v-on="on"
                 >
-                    <UserIcon></UserIcon>
+                    <UserIcon color="blackWhite"></UserIcon>
                 </v-btn>
             </template>
             <v-list>
@@ -61,6 +70,7 @@
         },
         data: () => ({
             menu: false,
+          sourceURL: `${process.env.BASE_URL}favicon-32x32.png`
         }),
         computed: {
             ...mapState({
@@ -91,5 +101,12 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
 
+.my-title {
+  font-family: 'Homemade Apple', cursive;
+}
+.btn-text {
+  text-transform: none;
+}
 </style>

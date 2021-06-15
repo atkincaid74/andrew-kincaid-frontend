@@ -113,7 +113,13 @@
                 </v-list-item-title>
             </v-list-item>
         </v-list>
-
+      <template v-slot:append>
+        <v-switch
+            v-model="$vuetify.theme.dark"
+            label="Dark Mode"
+            class="float-right pr-5"
+        />
+      </template>
     </v-navigation-drawer>
 </template>
 
