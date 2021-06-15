@@ -24,7 +24,7 @@
                 v-if="'subtitle' in cardObject"
                 v-html="cardObject.subtitle"
             ></v-card-subtitle>
-            <v-card-text class="scroll" v-if="section === 'intro'">
+            <v-card-text class="summary" v-if="section === 'intro'">
               <v-row>
                 <v-col
                     cols="12"
@@ -45,7 +45,7 @@
                       Quantitative Analyst by title, full-stack developer by trade
                     </v-list-item>
                     <v-list-item>
-                      4+ years developing a full-stack web application from the ground up, with ownership of the python
+                      {{ numYears }}+ years developing a full-stack web application from the ground up, with ownership of the python
                       package responsible for all insurance-related models
                     </v-list-item>
                     <v-list-item>
@@ -60,6 +60,42 @@
                   </v-list>
                 </v-col>
               </v-row>
+            </v-card-text>
+            <v-card-text class="skills" v-if="section === 'skills'">
+              <v-expansion-panels>
+                <v-expansion-panel v-for="[skill, skillObj] of Object.entries(cardObject.skills)">
+                  <v-expansion-panel-header
+                      v-if="'subSkills' in skillObj"
+                  >
+                    <v-slider
+                        readonly
+                        :label="skillObj.name"
+                        :value="skillObj.value"
+                    ></v-slider>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-header
+                      v-else
+                      expand-icon=""
+                      disabled
+                  >
+                    <v-slider
+                        readonly
+                        class="no-icon"
+                        :label="skillObj.name"
+                        :value="skillObj.value"
+                    ></v-slider>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content v-if="'subSkills' in skillObj">
+                    <v-slider
+                        v-for="[subSkill, subSkillObj] of Object.entries(skillObj.subSkills)"
+                        class="no-icon ml-3"
+                        readonly
+                        :label="subSkillObj.name"
+                        :value="subSkillObj.value"
+                    ></v-slider>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-card-text>
             <v-card-actions v-if="section === 'intro'">
               <v-spacer></v-spacer>
@@ -106,11 +142,50 @@
             publicPath: process.env.BASE_URL,
             cardInfo: {
               intro: {
-                title: 'Andrew <b>KINCAID</b>',
+                title: 'Andrew&nbsp;<b>KINCAID</b>',
                 subtitle: 'Quantitative Analyst',
               },
               skills: {
-                title: 'Skills'
+                title: 'Skills',
+                skills: {
+                  python: {
+                    name: 'Python',
+                    value: 99,
+                    subSkills: {
+                      pandas: {name: 'Pandas', value: 95},
+                      sqlAlchemy: {name: 'SQLAlchemy', value: 90},
+                      django: {name: 'Django', value: 80}
+                    }
+                  },
+                  js: {
+                    name: 'JavaScript',
+                    value: 70,
+                    subSkills: {
+                      vue: {name: 'Vue.js', value: 70}
+                    }
+                  },
+                  sql: {
+                    name: 'SQL',
+                    value: 92,
+                    subSkills: {
+                      oracle: {name: 'Oracle', value: 95},
+                      sqlite: {name: 'SQLite', value: 90},
+                      postgresql: {name: 'PostgreSQL', value: 70}
+                    }
+                  },
+                  git: {
+                    name: 'Git',
+                    value: 85
+                  },
+                  docker: {
+                    name: 'Docker',
+                    value: 50
+                  },
+                  azure: {
+                    name: 'Azure DevOps',
+                    value: 65
+                  }
+                }
               },
               experience: {
                 title: 'Experience'
@@ -120,6 +195,15 @@
               }
             }
         }),
+        computed: {
+            numYears: function () {
+                const startDate = new Date(2017, 5, 1);
+                const today = new Date();
+                let days = (today - startDate) / 1000 / 60 / 60 / 24;
+
+                return Math.floor(days / 365);
+            }
+        },
         methods: {
             logResume() {
                 if (this.$route.path === '/resume') {
@@ -151,6 +235,18 @@
 .v-card__text {
   font-size: 1rem;
   overflow-y: auto;
+}
+.summary {
   max-height: 60%;
+}
+.skills {
+  max-height: 80%;
+}
+.v-expansion-panel-header {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.no-icon {
+  margin-right: 24px;
 }
 </style>
