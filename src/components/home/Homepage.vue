@@ -97,6 +97,26 @@
                 </v-expansion-panel>
               </v-expansion-panels>
             </v-card-text>
+            <v-card-text class="skills" v-if="section === 'experience'">
+              <v-expansion-panels v-model="experienceOpen">
+                <v-expansion-panel v-for="[exp, expObj] of Object.entries(cardObject.experience)">
+                  <v-expansion-panel-header>
+                    <v-row>
+                      <v-col class="my-auto date" cols="1">{{ expObj.dates[0] }} - {{ expObj.dates[1] }}</v-col>
+                      <v-col class="my-auto" cols="1"><v-divider class="my-auto"></v-divider></v-col>
+                      <v-col class="my-auto job-title" cols="3">{{ expObj.title }}</v-col>
+                      <v-col class="my-auto" cols="4"><v-divider class="my-auto"></v-divider></v-col>
+                      <v-col class="my-auto employer" cols="3">{{ expObj.employer }}</v-col>
+                    </v-row>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <v-list>
+                      <v-list-item v-for="desc in expObj.description">{{ desc }}</v-list-item>
+                    </v-list>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-card-text>
             <v-card-actions v-if="section === 'intro'">
               <v-spacer></v-spacer>
               <v-btn
@@ -140,6 +160,7 @@
         data: () => ({
             githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend',
             publicPath: process.env.BASE_URL,
+            experienceOpen: 0,
             cardInfo: {
               intro: {
                 title: 'Andrew&nbsp;<b>KINCAID</b>',
@@ -188,7 +209,36 @@
                 }
               },
               experience: {
-                title: 'Experience'
+                title: 'Experience',
+                experience: {
+                  quant2: {
+                    dates: ['12/2019', 'present'],
+                    title: 'Quantitative Analyst II',
+                    employer: 'AM Best Rating Services',
+                    description: [
+                      'line1',
+                      'line2'
+                    ]
+                  },
+                  quant1: {
+                    dates: ['06/2018', '12/2019'],
+                    title: 'Quantitative Analyst I',
+                    employer: 'AM Best Rating Services',
+                    description: [
+                      'line1',
+                      'line2'
+                    ]
+                  },
+                  assAnal: {
+                    dates: ['06/2017', '06/2018'],
+                    title: 'Associate Analyst',
+                    employer: 'AM Best Rating Services',
+                    description: [
+                      'line1',
+                      'line2'
+                    ]
+                  },
+                }
               },
               education: {
                 title: 'Education'
@@ -235,6 +285,15 @@
 .v-card__text {
   font-size: 1rem;
   overflow-y: auto;
+}
+.date, .employer {
+  font-size: 0.8rem;
+}
+.employer {
+  justify-content: end;
+}
+.job-title {
+  font-size: 1.2rem;
 }
 .summary {
   max-height: 60%;

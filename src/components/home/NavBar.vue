@@ -63,6 +63,7 @@
             </v-list-item>
 
             <v-list-item
+                v-if="privileges.indexOf('golf-admin') > -1"
                 @click="goGolfAdmin"
                 class="my-1"
             >
