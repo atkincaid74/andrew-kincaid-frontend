@@ -61,7 +61,7 @@
                 </v-col>
               </v-row>
             </v-card-text>
-            <v-card-text class="skills" v-if="section === 'skills'">
+            <v-card-text class="skills mx-auto" v-if="section === 'skills'">
               <v-expansion-panels>
                 <v-expansion-panel v-for="[skill, skillObj] of Object.entries(cardObject.skills)">
                   <v-expansion-panel-header
@@ -97,21 +97,61 @@
                 </v-expansion-panel>
               </v-expansion-panels>
             </v-card-text>
-            <v-card-text class="skills" v-if="section === 'experience'">
+            <v-card-text class="experience" v-if="section === 'experience'">
               <v-expansion-panels v-model="experienceOpen">
                 <v-expansion-panel v-for="[exp, expObj] of Object.entries(cardObject.experience)">
                   <v-expansion-panel-header>
                     <v-row>
-                      <v-col class="my-auto date" cols="1">{{ expObj.dates[0] }} - {{ expObj.dates[1] }}</v-col>
-                      <v-col class="my-auto" cols="1"><v-divider class="my-auto"></v-divider></v-col>
-                      <v-col class="my-auto job-title" cols="3">{{ expObj.title }}</v-col>
-                      <v-col class="my-auto" cols="4"><v-divider class="my-auto"></v-divider></v-col>
-                      <v-col class="my-auto employer" cols="3">{{ expObj.employer }}</v-col>
+                      <v-col
+                          class="my-auto job-title"
+                          cols="0"
+                          md="4"
+                          lg="3"
+                      >
+                        {{ expObj.title }}
+                      </v-col>
+                      <v-col
+                          class="my-auto"
+                          cols="0"
+                          md="1"
+                          lg="2"
+                      >
+                        <v-divider class="my-auto"></v-divider>
+                      </v-col>
+                      <v-col
+                          class="my-auto date"
+                          cols="0"
+                          md="3"
+                          lg="2"
+                          justify="center"
+                      >
+                        {{ expObj.dates[0] }} - {{ expObj.dates[1] }}
+                      </v-col>
+                      <v-col
+                          class="my-auto"
+                          cols="0"
+                          md="1"
+                          lg="2"
+                      >
+                        <v-divider class="my-auto"></v-divider>
+                      </v-col>
+                      <v-col
+                          class="my-auto employer"
+                          cols="0"
+                          md="3"
+                      >
+                        {{ expObj.employer }}
+                      </v-col>
                     </v-row>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-list>
-                      <v-list-item v-for="desc in expObj.description">{{ desc }}</v-list-item>
+                      <v-list-item
+                          v-for="desc in expObj.description"
+                      >
+                        <v-list-item-icon><v-icon>{{ workIcon }}</v-icon></v-list-item-icon>
+                        {{ desc }}
+                      </v-list-item>
                     </v-list>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -155,11 +195,14 @@
 </template>
 
 <script>
+    import { mdiBriefcaseOutline } from '@mdi/js';
+
     export default {
         name: "Homepage",
         data: () => ({
             githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend',
             publicPath: process.env.BASE_URL,
+            workIcon: mdiBriefcaseOutline,
             experienceOpen: 0,
             cardInfo: {
               intro: {
@@ -216,8 +259,13 @@
                     title: 'Quantitative Analyst II',
                     employer: 'AM Best Rating Services',
                     description: [
-                      'line1',
-                      'line2'
+                      "Owner of all analytical Python code for the Quantitative Analysis Team, including a capital " +
+                      "adequacy model, projection model, and other credit rating tools. Responsible for reviewing the" +
+                      " code of colleagues to make sure the team's standards were met",
+				              "Acted as the team's subject matter expert for the investment risk component and made " +
+                      "significant enhancements to the credit risk component of AM Best's Capital Adequacy Ratio model",
+                      "Contributed to the Vue.js single page application and Django API that allows internal analysts" +
+                      " and external clients to access and view the output of models"
                     ]
                   },
                   quant1: {
@@ -225,8 +273,10 @@
                     title: 'Quantitative Analyst I',
                     employer: 'AM Best Rating Services',
                     description: [
-                      'line1',
-                      'line2'
+                      "Created all of the quantitative analysis group's database schemas and objects. Collaborated " +
+                      "with the database administrators to constantly enhance the efficiency of the database",
+				              "Acted as the representative for my team of developers to the company's IT department to ensure" +
+                      " that goals and timelines were aligned"
                     ]
                   },
                   assAnal: {
@@ -234,8 +284,10 @@
                     title: 'Associate Analyst',
                     employer: 'AM Best Rating Services',
                     description: [
-                      'line1',
-                      'line2'
+                      "6 week orientation that gave a strong working knowledge of the insurance sector and an in " +
+                      "depth look at rating agencies and their role in the market",
+				              "Converted a suite of existing MS Excel/VBA models into Python. Brought 8 separate models into " +
+                      "one code base to drastically improve maintainability"
                     ]
                   },
                 }
@@ -287,19 +339,22 @@
   overflow-y: auto;
 }
 .date, .employer {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 .employer {
   justify-content: end;
 }
 .job-title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .summary {
   max-height: 60%;
 }
-.skills {
+.skills, .experience {
   max-height: 80%;
+}
+.skills {
+  max-width: 800px;
 }
 .v-expansion-panel-header {
   padding-top: 2px;
