@@ -1,5 +1,5 @@
 <template>
-    <v-icon>{{ userIcon }}</v-icon>
+    <v-icon :color="color">{{ userIcon }}</v-icon>
 </template>
 
 <script>
@@ -8,6 +8,9 @@
 
     export default {
         name: "UserIcon",
+        props: {
+            color: {type: String, required: false}
+        },
         computed: {
             ...mapState({
                 username: state => state.username,
