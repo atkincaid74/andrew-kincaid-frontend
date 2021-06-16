@@ -150,11 +150,11 @@
                     </v-row>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    <v-list>
+                    <v-list dense>
                       <v-list-item
                           v-for="desc in expObj.description"
                       >
-                        <v-list-item-icon><v-icon>mdi-briefcase-outline</v-icon></v-list-item-icon>
+                        <v-list-item-icon><v-icon dense>mdi-briefcase-outline</v-icon></v-list-item-icon>
                         {{ desc }}
                       </v-list-item>
                     </v-list>
@@ -273,6 +273,51 @@
                 title: 'Andrew&nbsp;<b>KINCAID</b>',
                 subtitle: 'Quantitative Analyst',
               },
+              experience: {
+                title: 'Experience',
+                experience: {
+                  quant2: {
+                    dates: ['12/2019', 'present'],
+                    title: 'Quantitative Analyst II',
+                    employer: 'AM Best Rating Services',
+                    description: [
+                      "Owned analytical Python package for the Quantitative Analysis Team, including a capital " +
+                      "adequacy model, projection model, and other credit rating tools;" +
+                      " reviewed the code for all pull requests to the package to make sure the team's standards " +
+                      "were met",
+                      "Contributed to the Vue.js single page application and Django API that allowed internal " +
+                      "analysts and external clients to interact with the models",
+                      "Communicated directly with the analysts using the application to gather feedback and " +
+                      "constantly improve the product before and after its official launch"
+                    ]
+                  },
+                  quant1: {
+                    dates: ['06/2018', '12/2019'],
+                    title: 'Quantitative Analyst I',
+                    employer: 'AM Best Rating Services',
+                    description: [
+                      "Created the quantitative analysis group's database schemas and objects. Collaborated " +
+                      "with the database administrators to constantly enhance the efficiency of the database",
+				              "Acted as the representative for my team of developers to the company's IT department to ensure" +
+                      " that goals and timelines were aligned"
+                    ]
+                  },
+                  assAnal: {
+                    dates: ['06/2017', '06/2018'],
+                    title: 'Associate Analyst',
+                    employer: 'AM Best Rating Services',
+                    description: [
+                      "6 week orientation that gave a strong working knowledge of the insurance sector and an in " +
+                      "depth look at rating agencies and their role in the market",
+				              "Converted a suite of existing MS Excel/VBA models into Python. Brought 8 separate models into " +
+                      "one code base to drastically improve maintainability"
+                    ]
+                  },
+                }
+              },
+              education: {
+                title: 'Education'
+              },
               skills: {
                 title: 'Skills',
                 skills: {
@@ -314,50 +359,6 @@
                     value: 65
                   }
                 }
-              },
-              experience: {
-                title: 'Experience',
-                experience: {
-                  quant2: {
-                    dates: ['12/2019', 'present'],
-                    title: 'Quantitative Analyst II',
-                    employer: 'AM Best Rating Services',
-                    description: [
-                      "Owner of all analytical Python code for the Quantitative Analysis Team, including a capital " +
-                      "adequacy model, projection model, and other credit rating tools. Responsible for reviewing the" +
-                      " code of colleagues to make sure the team's standards were met",
-				              "Acted as the team's subject matter expert for the investment risk component and made " +
-                      "significant enhancements to the credit risk component of AM Best's Capital Adequacy Ratio model",
-                      "Contributed to the Vue.js single page application and Django API that allows internal analysts" +
-                      " and external clients to access and view the output of models"
-                    ]
-                  },
-                  quant1: {
-                    dates: ['06/2018', '12/2019'],
-                    title: 'Quantitative Analyst I',
-                    employer: 'AM Best Rating Services',
-                    description: [
-                      "Created all of the quantitative analysis group's database schemas and objects. Collaborated " +
-                      "with the database administrators to constantly enhance the efficiency of the database",
-				              "Acted as the representative for my team of developers to the company's IT department to ensure" +
-                      " that goals and timelines were aligned"
-                    ]
-                  },
-                  assAnal: {
-                    dates: ['06/2017', '06/2018'],
-                    title: 'Associate Analyst',
-                    employer: 'AM Best Rating Services',
-                    description: [
-                      "6 week orientation that gave a strong working knowledge of the insurance sector and an in " +
-                      "depth look at rating agencies and their role in the market",
-				              "Converted a suite of existing MS Excel/VBA models into Python. Brought 8 separate models into " +
-                      "one code base to drastically improve maintainability"
-                    ]
-                  },
-                }
-              },
-              education: {
-                title: 'Education'
               },
               projects: {
                 title: 'Hobby Projects',
