@@ -2,7 +2,7 @@
     <v-card
         class="mx-auto my-2"
         max-width="95%"
-        height="95%"
+        height="88vh"
     >
       <v-carousel
           :dark="$vuetify.theme.dark"
@@ -288,7 +288,9 @@
                       "Contributed to the Vue.js single page application and Django API that allowed internal " +
                       "analysts and external clients to interact with the models",
                       "Communicated directly with the analysts using the application to gather feedback and " +
-                      "constantly improve the product before and after its official launch"
+                      "constantly improve the product before and after its official launch",
+                      "Worked closely with the system engineer to deploy the application on Red Hat Enterprise Linux " +
+                      "servers"
                     ]
                   },
                   quant1: {
@@ -348,6 +350,14 @@
                   },
                   git: {
                     name: 'Git',
+                    value: 85
+                  },
+                  windows: {
+                    name: 'Windows',
+                    value: 100
+                  },
+                  linux: {
+                    name: 'Linux',
                     value: 85
                   },
                   docker: {
