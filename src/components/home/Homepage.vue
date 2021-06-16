@@ -208,6 +208,22 @@
                 </v-card-text>
               </v-card>
             </v-card-text>
+            <v-card-text class="projects" v-if="section === 'projects'">
+              <v-list shaped>
+                <v-list-item
+                    v-for="projObj in cardObject.projects"
+                >
+                  <v-list-group class="width100" :value="projObj.value">
+                    <template v-slot:prependIcon><v-icon dense>mdi-glasses</v-icon></template>
+                    <template v-slot:activator><v-list-item-title>{{ projObj.name }}</v-list-item-title></template>
+                    <v-list-item v-for="note in projObj.notes">
+                      <v-list-item-icon class="pl-4"><v-icon dense>mdi-pencil-ruler</v-icon></v-list-item-icon>
+                      <v-list-item-content v-html="note" class="d-inline"></v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list-item>
+              </v-list>
+            </v-card-text>
             <v-card-actions v-if="section === 'intro'">
               <v-spacer></v-spacer>
               <v-btn
@@ -249,7 +265,7 @@
     export default {
         name: "Homepage",
         data: () => ({
-            githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend',
+            githubLink: 'https://github.com/atkincaid74',
             publicPath: process.env.BASE_URL,
             experienceOpen: 0,
             cardInfo: {
@@ -342,6 +358,38 @@
               },
               education: {
                 title: 'Education'
+              },
+              projects: {
+                title: 'Hobby Projects',
+                projects: [
+                  {
+                    name: 'Personal Website',
+                    value: true,
+                    notes: [
+                        'Vue.js frontend, Django (Python) API, PostgreSQL database',
+                        'Deployed and hosted on Heroku as a separate frontend and backend',
+                        'Used as a host for my living resume and many ad-hoc projects'
+                    ]
+                  },
+                  {
+                    name: 'Raspberry Pi Home Server',
+                    value: false,
+                    notes: [
+                        'Built Pi 4 into home development server for website with Docker containers for Vue frontend,' +
+                        ' Django backend, and Postgres DB',
+                        'Planning to add automated testing and task managing containers next'
+                    ]
+                  },
+                  {
+                    name: 'Raspberry Pi Magic Mirror',
+                    value: false,
+                    notes: [
+                        'Used the <a target="_blank" href="https://github.com/MichMich/MagicMirror">Magic Mirror</a> ' +
+                        'GitHub project to turn a Pi Zero and an old monitor into an info hub',
+                        'Currently working on integrating the mirror with Alexa'
+                    ]
+                  }
+                ]
               }
             }
         }),
@@ -376,6 +424,7 @@
 .v-card__title {
   font-size: 3rem;
   line-height: 1.01;
+  word-break: normal;
 }
 .v-card__subtitle {
   padding-top: 0.3em;
@@ -398,7 +447,7 @@
 .summary {
   max-height: 60%;
 }
-.skills, .experience, .education {
+.skills, .experience, .education, .projects {
   max-height: 80%;
 }
 .skills {
@@ -410,5 +459,8 @@
 }
 .no-icon {
   margin-right: 24px;
+}
+.width100 {
+  width: 100%;
 }
 </style>
