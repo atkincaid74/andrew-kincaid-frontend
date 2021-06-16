@@ -42,19 +42,24 @@
                 <v-col class="pt-0">
                   <v-list>
                     <v-list-item>
+                      <v-list-item-icon><v-icon small>mdi-check-circle-outline</v-icon></v-list-item-icon>
                       Quantitative Analyst by title, full-stack developer by trade
                     </v-list-item>
                     <v-list-item>
-                      {{ numYears }}+ years developing a full-stack web application from the ground up, with ownership of the python
-                      package responsible for all insurance-related models
+                      <v-list-item-icon><v-icon small>mdi-check-circle-outline</v-icon></v-list-item-icon>
+                      {{ numYears }}+ years developing a full-stack web application from the ground up, with ownership
+                      of the python package responsible for all insurance-related models
                     </v-list-item>
                     <v-list-item>
+                      <v-list-item-icon><v-icon small>mdi-check-circle-outline</v-icon></v-list-item-icon>
                       Fast-learner and a team player with a strong work ethic
                     </v-list-item>
                     <v-list-item>
+                      <v-list-item-icon><v-icon small>mdi-check-circle-outline</v-icon></v-list-item-icon>
                       Passionate about using my problem-solving skills to find creative solutions
                     </v-list-item>
                     <v-list-item>
+                      <v-list-item-icon><v-icon small>mdi-check-circle-outline</v-icon></v-list-item-icon>
                       Dedicated to writing efficient, yet practical code
                     </v-list-item>
                   </v-list>
@@ -149,13 +154,59 @@
                       <v-list-item
                           v-for="desc in expObj.description"
                       >
-                        <v-list-item-icon><v-icon>{{ workIcon }}</v-icon></v-list-item-icon>
+                        <v-list-item-icon><v-icon>mdi-briefcase-outline</v-icon></v-list-item-icon>
                         {{ desc }}
                       </v-list-item>
                     </v-list>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
               </v-expansion-panels>
+            </v-card-text>
+            <v-card-text class="education" v-if="section === 'education'">
+              <v-card>
+                <v-img
+                    src="https://www.muhlenberg.edu/media/muhlenbergedu/contentassets/buildimages/rightnavigation/tower1220x523.jpg"
+                    class="white--text align-end"
+                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
+                    height="175px"
+                    position="top left"
+                >
+                  <v-card-title>Muhlenberg College</v-card-title>
+                </v-img>
+                <v-card-subtitle class="pb-0">B.S. - Mathematics, Chemistry minor</v-card-subtitle>
+                <v-card-text>
+                  <v-list dense>
+                    <v-list-item>
+                      <v-list-item-icon><v-icon>mdi-school-outline</v-icon></v-list-item-icon>
+                      Graduated with Honors in Mathematics and a 3.9 major GPA
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-icon><v-icon>mdi-license</v-icon></v-list-item-icon>
+                      Awarded the Harry A Benfer Memorial Scholarship for "promoting goodwill and demonstrating an
+                      appreciation for all phases of college life"
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-icon><v-icon>mdi-football</v-icon></v-list-item-icon>
+                      Voted captain of the varsity football team; named to the Academic Honor Roll
+                    </v-list-item>
+                  </v-list>
+                </v-card-text>
+              </v-card>
+              <v-card>
+                <v-card-title>Exams & Designations</v-card-title>
+                <v-card-text>
+                  <v-list dense>
+                    <v-list-item>
+                      <v-list-item-icon><v-icon>mdi-seal-variant</v-icon></v-list-item-icon>
+                      <b>Associate in Insurance Accounting and Finance</b>&nbsp;- The Institutes
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-icon><v-icon>mdi-pencil-box-multiple-outline</v-icon></v-list-item-icon>
+                      <b>Exams P & FM</b>&nbsp;- Society of Actuaries
+                    </v-list-item>
+                  </v-list>
+                </v-card-text>
+              </v-card>
             </v-card-text>
             <v-card-actions v-if="section === 'intro'">
               <v-spacer></v-spacer>
@@ -195,14 +246,11 @@
 </template>
 
 <script>
-    import { mdiBriefcaseOutline } from '@mdi/js';
-
     export default {
         name: "Homepage",
         data: () => ({
             githubLink: 'https://github.com/atkincaid74/andrew-kincaid-frontend',
             publicPath: process.env.BASE_URL,
-            workIcon: mdiBriefcaseOutline,
             experienceOpen: 0,
             cardInfo: {
               intro: {
@@ -350,7 +398,7 @@
 .summary {
   max-height: 60%;
 }
-.skills, .experience {
+.skills, .experience, .education {
   max-height: 80%;
 }
 .skills {
