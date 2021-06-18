@@ -40,6 +40,7 @@ export default {
           }
     }
     )
+    axios.get('/api/blah/')
   },
   beforeMount() {
     this.refreshAxiosHeaders();
