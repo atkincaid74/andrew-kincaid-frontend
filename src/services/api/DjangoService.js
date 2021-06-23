@@ -94,5 +94,41 @@ export default {
             .get('/api/projected_cut/')
             .then(response => (response))
             .catch(err => {throw err.response})
-    }
+    },
+    getHandicap() {
+        return axios
+            .get('/api/handicap/')
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    getSerializer(serializer) {
+        return axios
+            .get(`/api/handicap/serializer/${serializer}/`)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    postCourse(payload) {
+        return axios
+            .post('/courses/', payload)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    postScorecard(payload) {
+        return axios
+            .post('/scorecards/', payload)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    postTee(payload) {
+        return axios
+            .post('/tees/', payload)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
+    postRound(payload) {
+        return axios
+            .post('/rounds/', payload)
+            .then(response => (response))
+            .catch(err => {throw err.response})
+    },
 }

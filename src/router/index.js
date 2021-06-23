@@ -12,6 +12,12 @@ import AdminPage from "../components/home/AdminPage";
 import GolfPicksHome from "@/components/golfpicks/GolfPicksHome";
 import Details from "@/components/golfpicks/Details";
 import GolfAdmin from "@/components/golfpicks/GolfAdmin";
+import HandicapHome from "@/components/handicap/HandicapHome";
+import HandicapHistory from "@/components/handicap/HandicapHistory";
+import CourseForm from "@/components/handicap/CourseForm";
+import TeeForm from "@/components/handicap/TeeForm";
+import ScorecardForm from "@/components/handicap/ScorecardForm";
+import RoundForm from "@/components/handicap/RoundForm";
 
 Vue.use(Router);
 
@@ -96,6 +102,60 @@ const routes = [
         meta: {
             requiresAuth: false,
             title: 'Golf | Details'
+        }
+    },
+    {
+        path: '/handicap',
+        name: 'Handicap',
+        component: HandicapHome,
+        meta: {
+            requiresAuth: true,
+            title: 'Handicap | Home'
+        }
+    },
+    {
+        path: '/handicap/history',
+        name: 'HandicapHistory',
+        component: HandicapHistory,
+        meta: {
+            requiresAuth: true,
+            title: 'Handicap | History'
+        }
+    },
+    {
+        path: '/handicap/course/add',
+        name: 'CourseForm',
+        component: CourseForm,
+        meta: {
+            requiresAuth: true,
+            title: 'Handicap | Add Course'
+        }
+    },
+    {
+        path: '/handicap/scorecard/add',
+        name: 'ScorecardForm',
+        component: ScorecardForm,
+        meta: {
+            requiresAuth: true,
+            title: 'Handicap | Add Scorecard'
+        }
+    },
+    {
+        path: '/handicap/tee/add',
+        name: 'TeeForm',
+        component: TeeForm,
+        meta: {
+            requiresAuth: true,
+            title: 'Handicap | Add Tee'
+        }
+    },
+    {
+        path: '/handicap/round/add',
+        name: 'RoundForm',
+        component: RoundForm,
+        meta: {
+            requiresAuth: true,
+            title: 'Handicap | Add Round'
         }
     },
     {

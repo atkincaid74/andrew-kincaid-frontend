@@ -19,12 +19,22 @@ export const state = {
     snackbarColor: 'error',
     authHeader: null,
     privileges: [],
+    enteredFormInfo: {},
+    newCourseID: null,
+    newScorecardID: null,
+    newTeeID: null,
+    roundDate: new Date().toISOString().substr(0, 10),
 };
 
 export const getters = {
     getNavBar: state => state.navBarVisible,
     getToken: state => state.token,
     getPrivileges: state => state.privileges,
+    getEnteredFormInfo: state => state.enteredFormInfo,
+    getNewCourseID: state => state.newCourseID,
+    getNewScorecardID: state => state.newScorecardID,
+    getNewTeeID: state => state.newTeeID,
+    getRoundDate: state => state.roundDate,
 };
 
 export const mutations = {
@@ -57,6 +67,21 @@ export const mutations = {
     },
     setPrivileges (state, payload) {
         state.privileges = payload;
+    },
+    setEnteredFormInfo (state, payload) {
+        state.enteredFormInfo = payload;
+    },
+    setNewCourseID (state, payload) {
+        state.newCourseID = payload;
+    },
+    setNewScorecardID (state, payload) {
+        state.newScorecardID = payload;
+    },
+    setNewTeeID (state, payload) {
+        state.newTeeID = payload;
+    },
+    setRoundDate (state, payload) {
+        state.roundDate = payload;
     },
 };
 
@@ -247,6 +272,9 @@ const store = new Vuex.Store({
                 'userPaid',
                 'token',
                 'privileges',
+                'newCourseID',
+                'newScorecardID',
+                'newTeeID',
             ]
         })
     ]
