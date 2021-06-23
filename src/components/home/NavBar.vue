@@ -76,6 +76,19 @@
             </v-list-item>
 
             <v-list-item
+                v-if="privileges.indexOf('handicap') > -1"
+                @click="goHandicap"
+                class="my-1"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-golf-tee</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                Handicap
+              </v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
                 v-if="privileges.indexOf('admin') > -1"
                 @click="goToAdmin"
                 class="my-1"
@@ -172,6 +185,10 @@
             },
             goGolfAdmin() {
               this.$router.push({name: 'GolfAdmin'});
+              this.toggleNavBar()
+            },
+            goHandicap() {
+              this.$router.push({name: 'Handicap'});
               this.toggleNavBar()
             },
             goToLogin() {
