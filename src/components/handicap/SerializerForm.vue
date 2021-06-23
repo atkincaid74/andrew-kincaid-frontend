@@ -16,7 +16,7 @@
 
 <script>
 import DjangoAPI from '../../services/api/DjangoService';
-import { VTextField, VSelect } from 'vuetify/lib';
+import { VTextField, VSelect, VCheckbox } from 'vuetify/lib';
 import DateField from "@/components/handicap/DateField";
 import { mapGetters, mapMutations } from 'vuex';
 
@@ -34,7 +34,8 @@ export default {
   components: {
     VTextField,
     VSelect,
-    DateField
+    DateField,
+    VCheckbox
   },
   computed: {
     dataToSend() {
