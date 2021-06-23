@@ -42,7 +42,6 @@ export default {
       this.loading = true;
       try {
         const response = await DjangoService.postCourse(this.getFormInfo);
-        console.log(response);
         this.setNewCourseID(response.data.id);
         await this.$router.push({name: 'ScorecardForm'});
       } catch (e) {

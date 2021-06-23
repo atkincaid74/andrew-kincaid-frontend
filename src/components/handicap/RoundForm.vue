@@ -44,7 +44,6 @@ export default {
     async submit() {
       this.loading = true;
       try {
-        console.log('round', this.getFormInfo);
         await DjangoService.postRound(this.getFormInfo);
         await this.$router.push({name: 'HandicapHistory'});
       } catch (e) {

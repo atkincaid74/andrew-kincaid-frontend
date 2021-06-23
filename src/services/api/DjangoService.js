@@ -126,7 +126,6 @@ export default {
             .catch(err => {throw err.response})
     },
     postRound(payload) {
-        console.log('payload', payload);
         return axios
             .post('/rounds/', payload)
             .then(response => (response))

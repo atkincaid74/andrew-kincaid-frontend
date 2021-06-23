@@ -62,7 +62,6 @@ export default {
       const response = await DjangoAPI.getSerializer(this.serializer);
       this.formInfo = response.data;
       if (this.courseId > -1) {
-        console.log(this.formInfo, this.courseId);
         this.formInfo.course.value = this.courseId;
       }
       if (this.scorecardId > -1) {
