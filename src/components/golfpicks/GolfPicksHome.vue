@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Leaderboard/>
+    <Leaderboard />
   </div>
 </template>
 
@@ -8,11 +8,9 @@
 import Leaderboard from "@/components/golfpicks/Leaderboard";
 
 export default {
-name: "GolfPicksHome",
-  components: {Leaderboard}
-}
+  name: "GolfPicksHome",
+  components: { Leaderboard },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,21 +1,18 @@
 <template>
-    <div>
-        <Leaderboard></Leaderboard>
-    </div>
+  <div>
+    <Leaderboard></Leaderboard>
+  </div>
 </template>
 
 <script>
-    import Leaderboard from "./Leaderboard";
+import Leaderboard from "./Leaderboard";
 
-    export default {
-        name: "PickSixHome",
-        components: {
-            Leaderboard
-        },
-
-    }
+export default {
+  name: "PickSixHome",
+  components: {
+    Leaderboard,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
