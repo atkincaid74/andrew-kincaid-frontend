@@ -31,7 +31,7 @@
     "@mdi/js": "^3.9.97",
     "@vue/cli-plugin-babel": "^4.5.3",
     "@vue/cli-plugin-eslint": "^4.5.3",
-    "@vue/cli-service": "^3.12.1",
+    "@vue/cli-service": "^5.0.8",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
